@@ -151,6 +151,12 @@ class AudioTests(unittest.TestCase):
         self.cli("-o", "literal.wav", "--", unusual.name)
         self.assertTrue((self.root / "literal.wav").is_file())
 
+    @unittest.skipUnless(hasattr(os, "mkfifo"), "named pipes require POSIX")
+    def test_non_regular_input(self):
+        pipe = self.root / "pipe.wav"
+        os.mkfifo(pipe)
+        self.cli(pipe, "-o", "pipe-output.wav", success=False)
+
 
 if __name__ == "__main__":
     unittest.main()

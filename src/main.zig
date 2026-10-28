@@ -140,9 +140,7 @@ fn render(allocator: Allocator, options: Options) !void {
         if (existing) |dest| {
             if (std.mem.eql(u8, dest, path)) return error.OutputIsInput;
         }
-        const file = try cwd.openFile(path, .{});
-        defer file.close();
-        if ((try file.stat()).kind != .file) return error.InvalidInput;
+        if ((try cwd.statFile(path)).kind != .file) return error.InvalidInput;
         try command.appendSlice(allocator, &.{ "-i", path });
     }
     const graph = try filterGraph(allocator, inputs.items.len, options.rate);
