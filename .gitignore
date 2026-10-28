@@ -5,3 +5,6 @@ __pycache__/
 *.wav
 *.mp3
 .env
+/resample
+/resample.exe
+/resample.pdb

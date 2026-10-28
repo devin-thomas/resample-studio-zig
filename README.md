@@ -18,6 +18,15 @@ starting with `-`.
 
 Builds on macOS, Linux, and Windows. On Windows, use `zig-out\bin\resample.exe`.
 
+On macOS 27, work around Zig 0.15.2's native linker issue with:
+
+```sh
+zig build-exe src/main.zig -target aarch64-macos.14.0 -O ReleaseSafe -femit-bin=resample
+./resample song.wav --cents -300 -o slowed.mp3
+```
+
+Use `x86_64-macos.14.0` for Intel Macs.
+
 ```sh
 zig build test
 python3 tests/integration.py zig-out/bin/resample
