@@ -1,0 +1,5 @@
+/resample
+/__pycache__/
+/.build/
+/*.log
+/*.exit

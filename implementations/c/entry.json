@@ -1,0 +1,28 @@
+{
+  "id": "c",
+  "language": "C",
+  "contract": "resample-linked-v1",
+  "cwd": "implementations/c",
+  "build": [
+    "make",
+    "all"
+  ],
+  "run": [
+    "./resample"
+  ],
+  "outputProfile": "zig-48k",
+  "dependencies": [
+    "POSIX C11 compiler and make (build)",
+    "FFmpeg on PATH with libmp3lame (runtime)",
+    "macOS or Linux with /dev/fd; ffprobe and Python 3 are used only by tests"
+  ],
+  "improvements": [
+    "Atomic no-clobber publication by hard link, avoiding a second full output copy",
+    "Reserved sibling temporary and pinned input file descriptors",
+    "Hardlink/symlink output alias rejection",
+    "SIGINT/SIGTERM/SIGHUP forwarding to the child process group with temporary cleanup",
+    "One-frame PCM validation proves decoded samples without ffprobe or frame-text parsing",
+    "Event-driven child waiting, bounded diagnostic retention and forced cancellation escalation",
+    "Seekable output descriptor with RF64 auto finalization for large WAV files"
+  ]
+}
