@@ -6,6 +6,10 @@ adapters, correctness gates and the future performance protocol.
 format. The four entry manifests are in `implementations/c`, `cpp`, `go`, and
 `rust` relative to the repository root.
 
+[CLARIFICATIONS.md](CLARIFICATIONS.md) records the reference-empty
+submillisecond boundary found during fresh review and how the later harness
+must report it without scoring failed exports as fast results.
+
 ## Harness integration
 
 Discover `implementations/*/entry.json`, validate against the schema, resolve
