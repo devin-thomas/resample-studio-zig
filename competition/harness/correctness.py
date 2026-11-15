@@ -127,8 +127,8 @@ def safety(id,d):
    require(r.returncode!=0,'accepted input alias');require(local.read_bytes()==good,'input modified');return dict(exit=r.returncode)
   record(id,'input-alias-'+kind,alias)
  def literals():
-  local=d/"-space 'quote' $(literal); 音.wav";shutil.copyfile(src,local)
-  target=d/"literal output ' 音.WAV";r=c.run(id,['-o',target.name,'--',local.name],cwd=d)
+  local=d/"-space 'quote' $(literal); \u97f3.wav";shutil.copyfile(src,local)
+  target=d/"literal output ' \u97f3.WAV";r=c.run(id,['-o',target.name,'--',local.name],cwd=d)
   require(r.returncode==0,r.stderr.decode(errors='replace'));require(len(c.decode(target)[0])>0,'empty literal export');require(local.read_bytes()==good,'literal input changed')
   require(not (d/'literal').exists(),'shell expansion');return dict(output=target.name)
  record(id,'literal-paths',literals)

@@ -7,9 +7,20 @@ import contextlib,itertools,json,os,pathlib,random,resource,statistics,subproces
 import numpy as np
 import psutil
 import common as c
-p=c.arguments(__doc__);p.add_argument('--only',choices=['speed','memory','all'],default='all');p.add_argument('--repetitions',type=int,default=7);p.add_argument('--memory-repetitions',type=int,default=3);p.add_argument('--case-limit',type=int);p.add_argument('--entry',action='append',choices=c.IDS);a=p.parse_args()
+p=c.arguments(__doc__);p.add_argument('--only',choices=['speed','memory','all'],default='all');p.add_argument('--repetitions',type=int,default=7);p.add_argument('--memory-repetitions',type=int,default=3);p.add_argument('--case-limit',type=int);p.add_argument('--entry',action='append',choices=c.IDS);p.add_argument('--case',action='append',dest='selected_cases');p.add_argument('--qualify-only',action='store_true');p.add_argument('--refresh-qualification',action='store_true');a=p.parse_args()
 if a.repetitions<7:raise SystemExit('Contract requires at least seven speed repetitions')
 c.setup(a.work);w=c.WORK;f=w/'fixtures';outputs=w/'benchmark-outputs';outputs.mkdir(exist_ok=True)
+# Refuse mixed revisions or rebuilt executables on a resumed measurement.
+for checkout,revision in [('candidates',c.CANDIDATE_REV),('zig',c.ZIG_REV),('node',c.NODE_REV)]:
+ actual=subprocess.check_output(['git','rev-parse','HEAD'],cwd=w/checkout,text=True).strip()
+ if actual!=revision:raise RuntimeError(f'{checkout}: expected {revision}, found {actual}')
+ subprocess.run(['git','diff','--exit-code','HEAD','--'],cwd=w/checkout,check=True,stdout=subprocess.DEVNULL)
+for build in json.loads((w/'builds.json').read_text()):
+ actual=c.sha(pathlib.Path(c.ENTRIES[build['id']][1][0]))
+ if actual!=build['binary_sha256']:raise RuntimeError(f"Executable changed: {build['id']}")
+
+from diagnostics import inspect_short_mp3
+inspect_short_mp3()
 raw=w/'runs.jsonl';preflight=w/'performance-gates.jsonl';entries=a.entry or c.IDS
 workloads=[('short','short',1,.020),('second','second',1,1),('minute','minute',1,60),('ten-minute','ten-minute',1,600),('concat-2','half-minute',2,60),('concat-16','sixteenth',16,60)]
 cases=[]
@@ -17,7 +28,7 @@ for (load,fixture,n,seconds),infmt,outfmt,ratio,publication in itertools.product
  cases.append(dict(id=f'{load}_{infmt}-{outfmt}_r{ratio}_{publication}',workload=load,fixture=fixture,inputs=n,input_format=infmt,output_format=outfmt,ratio=ratio,publication=publication,input_seconds=seconds))
 if a.case_limit:cases=cases[:a.case_limit]
 (w/'cases.json').write_text(json.dumps(cases,indent=2));done={(r['case'],r['entry'],r['pass'],r['repetition']) for r in c.readlines(raw)}
-gates={(r['case'],r['entry']):r for r in c.readlines(preflight)}
+gates={(r['case'],r['entry']):r for r in c.readlines(preflight) if not a.refresh_qualification and (r['entry']=='reference' or not a.selected_cases or r['case'] not in a.selected_cases)}
 
 def run_process(id,args,sample=False):
  cwd,cmd=c.ENTRIES[id];before=resource.getrusage(resource.RUSAGE_CHILDREN)
@@ -31,7 +42,9 @@ def run_process(id,args,sample=False):
    for q in mac_process.snapshot(proc.pid):
     identity=str(q['pid']);memory=q['rss'];rss+=memory
     peaks[identity]=max(memory,peaks.get(identity,0))
-    observed[identity]=dict(pid=q['pid'],name=q['name'],max_sampled_rss=peaks[identity],cpu_seconds=q['cpu_seconds'])
+    prior_process=observed.get(identity,{})
+    executable=prior_process.get('executable') if prior_process.get('name')==q['name'] and prior_process.get('executable') else mac_process.executable_path(q['pid'])
+    observed[identity]=dict(pid=q['pid'],name=q['name'],executable=executable,max_sampled_rss=peaks[identity],cpu_seconds=q['cpu_seconds'])
     detail.append(dict(pid=q['pid'],rss=memory,name=q['name']))
    samples.append((stamp-start,rss,stamp-previous,detail));previous=stamp
    stop.wait(.002)
@@ -57,9 +70,9 @@ def output_valid(path,case,id,full=True):
  meta=c.probe(path);s=next(q for q in meta['streams'] if q['codec_type']=='audio')
  rate=44100 if id=='node' else 48000
  assert int(s['sample_rate'])==rate and s['channels']==2,f'wrong output profile {s}'
- assert s['codec_name']==('pcm_f32le' if id=='node' else 'pcm_s24le') if case['output_format']=='wav' else s['codec_name']=='mp3'
+ assert s['codec_name']==('pcm_f32le' if id=='node' else 'pcm_s24le') if case['output_format']=='wav' else s['codec_name']=='mp3',f'wrong codec {s["codec_name"]}'
  # Stream through decoder: no whole-output memory allocation in harness.
- command=[c.FF,'-v','error','-i',str(path),'-map','0:a:0','-f','f32le','-c:a','pcm_f32le','-']
+ command=[c.FF,'-v','error',*c.input_format_args(path),'-i',str(path),'-map','0:a:0','-f','f32le','-c:a','pcm_f32le','-']
  nbytes=0;maxamp=0.;square=0.;nonfinite=False
  with subprocess.Popen(command,env=c.ENV,stdout=subprocess.PIPE,stderr=subprocess.PIPE) as decoder:
   while True:
@@ -83,6 +96,7 @@ def arguments_for(case,out):
  return [*[f/(case['fixture']+'.'+case['input_format'])]*case['inputs'],'-o',out,'--speed',case['ratio']*100,*(['--overwrite'] if case['publication']=='overwrite' else [])]
 
 for index,case in enumerate(cases):
+ if a.selected_cases and case['id'] not in a.selected_cases:continue
  print('CASE',index+1,'/',len(cases),case['id'],flush=True)
  c.append(w/'host-load.jsonl',dict(case=case['id'],unix_time=time.time(),load_average=os.getloadavg(),memory_available=psutil.virtual_memory().available,swap=psutil.swap_memory()._asdict(),cpu=psutil.cpu_times()._asdict()))
  # Establish reference nonemptiness, decoded duration and output profile before
@@ -91,7 +105,7 @@ for index,case in enumerate(cases):
  if (case['id'],'reference') not in gates:
   try:
    c.reference([f/(case['fixture']+'.'+case['input_format'])]*case['inputs'],ref,case['ratio'])
-   evidence=output_valid(ref,case,'zig');row=dict(case=case['id'],entry='reference',status='PASS',evidence=evidence)
+   evidence=output_valid(ref,case,'zig');row=dict(case=case['id'],entry='reference',status='PASS',evidence=evidence,reference_ffmpeg=c.FF)
   except Exception as ex:row=dict(case=case['id'],entry='reference',status='FAIL',error=str(ex))
   c.append(preflight,row);gates[(case['id'],'reference')]=row;ref.unlink(missing_ok=True)
  if gates[(case['id'],'reference')]['status']!='PASS':
@@ -101,7 +115,7 @@ for index,case in enumerate(cases):
  for id in entries:
   if (case['id'],id) in gates:continue
   out=outputs/(id+'.'+case['output_format']);prepare_out(out,case['publication'])
-  r=run_process(id,arguments_for(case,out));row=dict(case=case['id'],entry=id,status='PASS',first_launch=r)
+  r=run_process(id,arguments_for(case,out));row=dict(case=case['id'],entry=id,status='PASS',first_launch=r,reference_ffmpeg=c.FF)
   try:
    assert r['returncode']==0,r['stderr'];row['evidence']=output_valid(out,case,id)
   except Exception as ex:row['status']='FAIL';row['error']=str(ex)
@@ -110,6 +124,7 @@ for index,case in enumerate(cases):
   out.unlink(missing_ok=True)
  eligible=[id for id in entries if gates[(case['id'],id)]['status']=='PASS']
  passes=(['speed'] if a.only=='speed' else ['memory'] if a.only=='memory' else ['speed','memory'])
+ if a.qualify_only:continue
  for kind in passes:
   count=a.repetitions if kind=='speed' else a.memory_repetitions
   # Case-based starting order plus cyclic rotation distributes positions across

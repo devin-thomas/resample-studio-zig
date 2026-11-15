@@ -3,11 +3,11 @@ import json,os,pathlib,platform,shutil,subprocess,time,wave
 import numpy as np
 import jsonschema
 import common as c
-p=c.arguments(__doc__);p.add_argument('--fixtures-only',action='store_true');a=p.parse_args();w=a.work.resolve();w.mkdir(exist_ok=True,parents=True)
-ff=shutil.which('ffmpeg');fp=shutil.which('ffprobe');node=shutil.which('node')
+p=c.arguments(__doc__);p.add_argument('--fixtures-only',action='store_true');p.add_argument('--fixture-ffmpeg',type=pathlib.Path);a=p.parse_args();w=a.work.resolve();w.mkdir(exist_ok=True,parents=True)
 # Thread budget is host-default for all entries. No candidate-only filter flags.
 env={'PATH':'/Users/research/homebrew/bin:'+os.environ['PATH'],'LC_ALL':'C','LANG':'C','TZ':'UTC','OMP_NUM_THREADS':'1','OPENBLAS_NUM_THREADS':'1','VECLIB_MAXIMUM_THREADS':'1'}
-cfg=dict(ffmpeg=ff,ffprobe=fp,node=node,environment=env,platform=platform.platform(),architecture=platform.machine(),candidate_revision=c.CANDIDATE_REV,zig_revision=c.ZIG_REV,node_revision=c.NODE_REV)
+ff=shutil.which('ffmpeg',path=env['PATH']);fp=shutil.which('ffprobe',path=env['PATH']);node=shutil.which('node',path=env['PATH'])
+cfg=dict(ffmpeg=ff,ffprobe=fp,fixture_generator_ffmpeg=str(a.fixture_ffmpeg.resolve()) if a.fixture_ffmpeg else ff,node=node,environment=env,platform=platform.platform(),architecture=platform.machine(),candidate_revision=c.CANDIDATE_REV,zig_revision=c.ZIG_REV,node_revision=c.NODE_REV)
 (w/'config.json').write_text(json.dumps(cfg,indent=2));c.setup(w)
 metadata={}
 for label,cmd in [('ffmpeg',[ff,'-version']),('ffmpeg-build',[ff,'-buildconf']),('ffprobe',[fp,'-version']),('node',[node,'--version']),('clang',['clang','--version']),('go',['go','version']),('rust',['rustc','-vV']),('cargo',['cargo','--version']),('host',['sysctl','hw.model','hw.ncpu','hw.memsize','hw.physicalcpu']),('os',['sw_vers']),('disk',['df','-h',str(w)]),('load',['ps','-axo','pid,ppid,%cpu,rss,etime,command','-r'])]:
@@ -32,8 +32,9 @@ if not a.fixtures_only:
   (w/'builds.json').write_text(json.dumps(builds,indent=2))
   if r.returncode:raise RuntimeError(r.stderr)
  metadata['node-lock-sha256']=c.sha(w/'node/pnpm-lock.yaml')
+metadata['fixture_generator']={'path':cfg['fixture_generator_ffmpeg'],'version':subprocess.check_output([cfg['fixture_generator_ffmpeg'],'-version'],text=True,stderr=subprocess.STDOUT),'build_configuration':subprocess.check_output([cfg['fixture_generator_ffmpeg'],'-buildconf'],text=True,stderr=subprocess.STDOUT),'sha256':c.sha(pathlib.Path(cfg['fixture_generator_ffmpeg']).resolve())}
 (w/'environment.json').write_text(json.dumps(metadata,indent=2))
-f=w/'fixtures';f.mkdir(exist_ok=True)
+f=w/'fixtures';f.mkdir(exist_ok=True);fixture_ff=cfg['fixture_generator_ffmpeg']
 def wav(name,rate=48000,seconds=1,channels=2,kind='tone',freq=440,frames=None):
  dest=f/(name+'.wav')
  if dest.exists():return dest
@@ -53,7 +54,7 @@ def wav(name,rate=48000,seconds=1,channels=2,kind='tone',freq=440,frames=None):
 for name,duration in [('short',.020),('second',1),('minute',60),('ten-minute',600),('half-minute',30),('sixteenth',3.75)]:
  src=wav(name,seconds=duration)
  dst=src.with_suffix('.mp3')
- if not dst.exists():c.tool([ff,'-v','error','-i',src,'-map_metadata','-1','-c:a','libmp3lame','-b:a','320k',dst],timeout=600)
+ if not dst.exists():c.tool([fixture_ff,'-v','error','-i',src,'-map_metadata','-1','-c:a','libmp3lame','-b:a','320k',dst],timeout=600)
 for rate in [32000,44100,48000]:
  for dur in [.005,.020]:wav(f'short-{rate}-{dur}',rate=rate,seconds=dur,channels=1)
  for n in [1,10,64]:wav(f'boundary-{rate}-{n}',rate=rate,frames=n,channels=1)
@@ -61,6 +62,6 @@ for rate in [32000,44100,48000]:
  wav(f'mono-{rate}',rate=rate,channels=1,freq=440)
  wav(f'stereo-{rate}',rate=rate,channels=2,freq=880)
 for name in ['mono-44100','stereo-32000']:
- if not (f/(name+'.mp3')).exists():c.tool([ff,'-v','error','-i',f/(name+'.wav'),'-c:a','libmp3lame','-b:a','320k',f/(name+'.mp3')])
+ if not (f/(name+'.mp3')).exists():c.tool([fixture_ff,'-v','error','-i',f/(name+'.wav'),'-c:a','libmp3lame','-b:a','320k',f/(name+'.mp3')])
 manifest=[dict(file=q.name,bytes=q.stat().st_size,sha256=c.sha(q)) for q in sorted(f.iterdir()) if q.is_file()]
 (w/'fixtures.json').write_text(json.dumps(manifest,indent=2));print('FIXTURES',len(manifest),flush=True)

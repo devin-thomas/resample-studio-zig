@@ -1,5 +1,5 @@
 """Shared executable discovery and deterministic, unmodified process environment."""
-import argparse, hashlib, json, os, pathlib, subprocess, time
+import argparse, hashlib, json, os, pathlib, shutil, subprocess, time
 import numpy as np
 ROOT = pathlib.Path(__file__).resolve().parents[2]
 IDS = ['zig', 'c', 'cpp', 'go', 'rust', 'node']
@@ -19,6 +19,9 @@ def setup(work):
  ENV=dict(os.environ, **cfg['environment'])
  ENV['RESAMPLE_NODE_ROOT']=str(WORK/'node')
  FF=cfg['ffmpeg'];FP=cfg['ffprobe']; ENTRIES={}
+ for name,pinned in [('ffmpeg',FF),('ffprobe',FP)]:
+  effective=shutil.which(name,path=ENV['PATH'])
+  if not effective or pathlib.Path(effective).resolve()!=pathlib.Path(pinned).resolve():raise RuntimeError(f'{name}: reference path and candidate PATH must resolve to the same executable')
  for id in IDS:
   if id=='zig':cwd=WORK/'zig';cmd=[str(cwd/'resample')]
   elif id=='node':cwd=WORK/'node';cmd=[cfg['node'],'--import',str(cwd/'node_modules/tsx/dist/loader.mjs'),str(ROOT/'competition/harness/node-adapter.mjs')]
@@ -37,10 +40,16 @@ def tool(args,timeout=180):
  if r.returncode:raise RuntimeError(r.stderr.decode(errors='replace')[-3000:])
  return r.stdout
 
-def probe(p):return json.loads(tool([FP,'-v','error','-show_streams','-show_format','-show_chapters','-of','json',p]))
+def input_format_args(p):
+ # Verification knows the declared container. Forcing it rejects a wrong
+ # container and avoids FFmpeg auto-probe false positives on two-frame MP3.
+ extension=pathlib.Path(p).suffix.lower()
+ return ['-f',extension[1:]] if extension in ['.wav','.mp3'] else []
+
+def probe(p,declared=True):return json.loads(tool([FP,'-v','error',*(input_format_args(p) if declared else []),'-show_streams','-show_format','-show_chapters','-of','json',p]))
 def decode(p):
  info=probe(p);s=next(s for s in info['streams'] if s['codec_type']=='audio')
- a=np.frombuffer(tool([FF,'-v','error','-i',p,'-map','0:a:0','-f','f32le','-c:a','pcm_f32le','-'],timeout=600),dtype='<f4').reshape(-1,int(s['channels']))
+ a=np.frombuffer(tool([FF,'-v','error',*input_format_args(p),'-i',p,'-map','0:a:0','-f','f32le','-c:a','pcm_f32le','-'],timeout=600),dtype='<f4').reshape(-1,int(s['channels']))
  return a,int(s['sample_rate']),info
 
 def graph(n,ratio,rate=48000):

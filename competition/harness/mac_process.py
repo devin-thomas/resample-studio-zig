@@ -17,6 +17,8 @@ lib.proc_pidinfo.argtypes=[C.c_int,C.c_int,C.c_uint64,C.c_void_p,C.c_int]
 lib.proc_pidinfo.restype=C.c_int
 lib.proc_name.argtypes=[C.c_int,C.c_void_p,C.c_uint32]
 lib.proc_name.restype=C.c_int
+lib.proc_pidpath.argtypes=[C.c_int,C.c_void_p,C.c_uint32]
+lib.proc_pidpath.restype=C.c_int
 class TaskInfo(C.Structure):
  _fields_=[(s,C.c_uint64) for s in ['virtual','resident','user','system','threads_user','threads_system']]+[(s,C.c_int32) for s in ['policy','faults','pageins','cow','messages_sent','messages_received','mach_calls','unix_calls','switches','threads','running','priority']]
 assert C.sizeof(TaskInfo)==96
@@ -39,3 +41,7 @@ def snapshot(root):
   name=C.create_string_buffer(128);lib.proc_name(pid,name,len(name))
   rows.append(dict(pid=pid,name=name.value.decode(errors='replace'),rss=int(task.resident),cpu_seconds=(task.user+task.system)*TIME_SCALE))
  return rows
+
+def executable_path(pid):
+ buffer=C.create_string_buffer(4096)
+ return buffer.value.decode(errors='replace') if lib.proc_pidpath(pid,buffer,len(buffer))>0 else None
