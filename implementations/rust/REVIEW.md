@@ -1,0 +1,148 @@
+# Rust entry review
+
+The independent architecture review is complete. Safety and orchestration
+improvements are implemented and the focused checks pass. The canonical CLI,
+`zig-48k` output profile, primary FFmpeg graph, encoding quality and manifest
+build/run interface remain intact. No comparative benchmark was run, and no
+speed or memory superiority is claimed.
+
+Reviewed against `competition/CONTRACT.md`, `competition/README.md`, and the
+coordinator's `competition/CLARIFICATIONS.md`. The builder was not contacted.
+All edits and generated results are inside `implementations/rust`; no shared
+contract, baseline, sibling entry, global configuration or Git history changed.
+
+## Findings and implemented changes
+
+1. **Cancellation could signal a reused PID.** The old handler loaded a global
+   child PID and called `kill(-pid, SIGKILL)`. Between `wait()` reaping the child
+   and clearing that global, a signal could target a recycled process-group ID.
+   The handler now only stores cancellation. A single-threaded supervisor owns
+   the unreaped child and is the only code that kills its group. After reaping,
+   neither its handler nor its cleanup signals that PID. Inherited SIGCHLD
+   ignoring is reset before spawn so the child cannot be auto-reaped. An
+   ownership guard kills and waits on supervisor setup/read/poll errors;
+   ECHILD explicitly prevents signaling a no-longer-owned PID.
+
+2. **Validation did not pin the input used by FFmpeg.** The builder opened and
+   inspected an input, closed it, then passed a pathname for FFmpeg to reopen.
+   Replacing it with a FIFO could hang the child; replacing it with another file
+   could decode unvalidated content. Inputs now open nonblocking, validate via
+   their open descriptors, and pass those same descriptors through `fd:` URLs.
+   Parent copies close after spawn. This also removes the input canonicalize
+   and pre-open metadata calls. Inheritance is configured in the single-threaded
+   parent rather than using `pre_exec`, preserving eligibility for Rust's native
+   process-spawn fast path. Handles below 3 are duplicated above standard I/O so
+   callers with closed stdin/stdout cannot cause descriptor collisions.
+
+3. **Concatenation validation encoded entire decoded tracks a second time.**
+   The decoded null-output technique correctly rejects zero-sample inputs, but
+   its PCM encoders previously processed every frame. Each validation output
+   now uses `-frames:a 1`: one decoded frame proves source nonemptiness. The
+   primary graph still processes the complete input, with `-xerror` unchanged.
+   Every input, including a single input, has a source validation output; source
+   emptiness is independent of post-resampling duration. Instrumenting the
+   validation muxers as framecrc outputs confirmed exactly one encoded packet
+   for each of two one-second sources. This is an operation-count improvement,
+   not a measured end-to-end speedup. Packet-copy validation was deliberately
+   avoided because packets do not establish decoded audio samples.
+
+4. **Child diagnostics were unbounded.** The child previously inherited stderr
+   and could flood callers. The supervisor now drains a nonblocking pipe into a
+   16 KiB tail, with a truncation notice. Each drain iteration has a fixed read
+   budget so flooding cannot prevent cancellation or exit checks. `poll` wakes
+   on diagnostic activity/pipe close, with a 50 ms fallback for early stderr
+   closure or a cancellation arriving immediately before polling. There is no
+   reader thread, additional subprocess, output buffering or full diagnostic
+   file. A child writing 1 MiB retains the final marker and emits bounded output.
+
+5. **Temporary cleanup could unlink a replacement inode.** The old destructor
+   removed the temporary pathname even after validation detected replacement.
+   It now checks that the name still identifies its own file and leaves another
+   inode untouched. A targeted race verifies that the replacement survives and
+   no final output is published. Ordinary handled failures still remove the
+   entry's own temporary.
+
+## Retained architecture and safety
+
+FFmpeg performs decoding, resampling, linked varispeed, concatenation and
+encoding. Rust implements CLI/process/file orchestration; this is not a new
+resampling algorithm. One FFmpeg process handles all inputs, without ffprobe
+subprocesses or a second decode pass. The exact eight-decimal `asetrate` graph,
+first audio streams, track order, stereo 48 kHz output, pcm_s24le WAV and
+320 kbps libmp3lame MP3 are retained. Source metadata is disabled. Input
+protocol whitelisting excludes network access.
+
+The sibling temporary remains exclusively reserved, mode 0600, and receives
+FFmpeg stdout via seekable `fd:` output. WAV RIFF and data chunk sizes are now
+explicitly checked against the completed file, in addition to decoding tests.
+Fresh publication uses an exclusive hardlink; overwrite uses atomic rename.
+Neither operation copies the output. Existing destinations, late publication
+collisions, initial/late input aliases, child failures and cancellation preserve
+the required output/input data. No explicit output fsync is introduced.
+
+## Verification
+
+Run from `implementations/rust`:
+
+```sh
+cargo fmt --check
+cargo build --release --locked
+cargo test --locked
+cargo clippy --locked --all-targets -- -D warnings
+python3 ../../tests/integration.py ./target/release/resample
+python3 tests/focused.py ./target/release/resample
+```
+
+Final results on arm64 macOS with Rust 1.98.1 and FFmpeg 9.0.2:
+
+- Release build, formatting and Clippy pass without warnings.
+- All 2 Rust unit tests pass.
+- All 11 existing per-entry integration tests pass.
+- All 22 focused tests pass. They include decoded sample equality against the
+  frozen reference for all 7 speeds and all 7 cents values; mixed sample rates
+  and mono/stereo order; silence, impulses, deterministic noise and sweeps;
+  MP3 input/output; empty/partial-sample/corrupt sources (including corruption
+  after the first validation frame); literal filenames;
+  publication/alias races; missing dependencies; finalized WAV headers; bounded
+  diagnostics; and SIGINT/SIGTERM/SIGHUP child reaping and cleanup.
+- Additional short tests establish nonempty reference audio and sample equality
+  for 5 ms and 20 ms sources at 32/44.1/48 kHz and 25/100/400%. The prior
+  97-frame clips also match at those rates/speeds.
+- Cancellation succeeds with stderr closed early or continuously flooded.
+  Launch succeeds with ignored SIGCHLD and with stdin/stdout closed.
+- Every constraint in the frozen `entry.schema.json` was checked directly
+  against `entry.json`; its repository-relative cwd and run executable resolve.
+  No JSON Schema package was installed. Build argv remains
+  `cargo build --release --locked`; run prefix remains
+  `./target/release/resample`.
+
+Builds and checks ran under owned `screen` sessions with `nice -n 10`. Their
+logs and exit markers are under ignored `target/review-*`. No external
+notifications, commits, pushes, workers or comparative tests were used.
+
+## Remaining limitations
+
+- **Reference-empty boundary:** a one-sample mono 44.1 kHz WAV at 100%, and a
+  32-sample mono 48 kHz WAV at 400%, have zero decoded output samples through
+  the frozen reference graph. Tests first verify this reference result, then
+  verify clean candidate failure, absent new output and preservation of an
+  existing destination. These cases are unsupported exports and excluded from
+  speed ranking under `competition/CLARIFICATIONS.md`; they are not successes
+  or evidence that the source was empty.
+- Runtime is Unix-specific (macOS/Linux), with FFmpeg `fd` support and the stated
+  filters/encoders, plus hardlink/rename filesystem support. Linux was not
+  exercised. Input descriptors consume one handle per track; extreme input
+  counts may reach OS descriptor or argument limits and fail diagnostically.
+- The destination directory and executable PATH must be trusted. Inode checks
+  do not make check-then-rename/link/unlink operations immune to a hostile
+  concurrent namespace mutator. Input handles pin identity, not immutable file
+  contents. Callers must not edit an input inode while it is being decoded.
+- There is no power-loss fsync guarantee. SIGKILL, crashes and power loss cannot
+  run parent cleanup; a temporary may remain and FFmpeg may continue until exit.
+  Handled signals are covered. Cancellation observed before publication fails
+  cleanly; publication is the commit point for a completed export.
+- No timing/RSS ranking, long-track performance run, codec-delay-aligned MP3
+  fidelity study, or complete later harness quality gate was performed. The
+  concrete optimization removes full-track validation PCM encoding and avoids
+  a forced fork callback, but total speed still requires measurement including
+  FFmpeg. The later harness owns those measurements and integration.

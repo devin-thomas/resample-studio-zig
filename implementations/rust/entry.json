@@ -1,0 +1,32 @@
+{
+  "id": "rust",
+  "language": "Rust",
+  "contract": "resample-linked-v1",
+  "cwd": "implementations/rust",
+  "build": [
+    "cargo",
+    "build",
+    "--release",
+    "--locked"
+  ],
+  "run": [
+    "./target/release/resample"
+  ],
+  "outputProfile": "zig-48k",
+  "dependencies": [
+    "Rust and Cargo 1.85 or newer for building; Cargo.lock pins libc 0.2.189",
+    "Unix host (macOS or Linux); this entry uses Unix process groups and atomic filesystem links",
+    "FFmpeg on PATH with fd protocol, the contract audio filters, pcm_s24le and libmp3lame",
+    "Destination filesystem supporting same-directory hardlinks and atomic rename"
+  ],
+  "improvements": [
+    "Atomic exclusive publication of the complete output inode avoids a full output copy and partial final visibility",
+    "Pinned validated input descriptors prevent pathname replacement from redirecting FFmpeg to a different file or FIFO",
+    "Atomically reserved sibling temporary; FFmpeg writes through an inherited seekable descriptor and finalizes WAV headers",
+    "Detects input/output inode aliases, including hardlinks and symlinks, and rechecks before publication; cleanup refuses changed temporary inodes",
+    "Signal handlers only record cancellation; one supervisor kills the owned group before reaping, avoiding stale-PID signal races",
+    "Bounded 16 KiB diagnostic tail and bounded pipe work; no reader thread or extra subprocess",
+    "Per-input decoded null outputs reject empty tracks; each encodes only one frame instead of the full track, with the primary DSP graph unchanged",
+    "Native CLI plus FFmpeg performs the DSP; no measured timing or memory superiority claim"
+  ]
+}
