@@ -1,0 +1,21 @@
+{
+  "ffmpeg": "/Users/research/homebrew/bin/ffmpeg",
+  "ffprobe": "/Users/research/homebrew/bin/ffprobe",
+  "node": "/opt/homebrew/bin/node",
+  "environment": {
+    "PATH": "/Users/research/homebrew/bin:/Users/research/.local/bin:/usr/local/bin:/opt/homebrew/bin:/Users/research/.orbstack/bin:/usr/bin:/bin:/usr/sbin:/sbin",
+    "LC_ALL": "C",
+    "LANG": "C",
+    "TZ": "UTC",
+    "OMP_NUM_THREADS": "1",
+    "OPENBLAS_NUM_THREADS": "1",
+    "VECLIB_MAXIMUM_THREADS": "1"
+  },
+  "platform": "macOS-27.2-arm64-arm-64bit-Mach-O",
+  "architecture": "arm64",
+  "candidate_revision": "ebb4fb2b19b68c0a4cce02b5b125c8e4be1c349a",
+  "zig_revision": "5ab090b54caf4efd9b0c2712571bfd20b24e5554",
+  "node_revision": "7c6e7a91bacabb63eb2895af5ec0101a812fce33",
+  "fixture_generator_ffmpeg": "/Users/research/.local/bin/ffmpeg",
+  "fixture_generator_ffprobe": "/Users/research/.local/bin/ffprobe"
+}

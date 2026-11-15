@@ -1,0 +1,68 @@
+[
+  {
+    "event": "stopped-owned-ssd-inventory",
+    "pid": 99069,
+    "unix_time": 1794725701.2769768,
+    "observed_cpu_percent": 26.7,
+    "elapsed_seconds": 93,
+    "reason": "Defer required drive inventory until benchmark exports finish to avoid further disk interference. Shared-host load records preserve the interval.",
+    "interval_start_unix_time": 1794725575.795964,
+    "affected_speed_cases": [
+      "minute_wav-wav_r0.5_fresh",
+      "minute_wav-wav_r0.5_overwrite",
+      "minute_wav-wav_r1_fresh",
+      "minute_wav-wav_r1_overwrite",
+      "second_mp3-mp3_r0.5_fresh",
+      "second_mp3-mp3_r0.5_overwrite",
+      "second_mp3-mp3_r1.255_fresh",
+      "second_mp3-mp3_r1.255_overwrite",
+      "second_mp3-mp3_r1_fresh",
+      "second_mp3-mp3_r1_overwrite",
+      "second_mp3-mp3_r2_fresh",
+      "second_mp3-mp3_r2_overwrite",
+      "second_mp3-wav_r0.5_fresh",
+      "second_mp3-wav_r0.5_overwrite",
+      "second_mp3-wav_r1.255_fresh",
+      "second_mp3-wav_r1.255_overwrite",
+      "second_mp3-wav_r1_fresh",
+      "second_mp3-wav_r1_overwrite",
+      "second_mp3-wav_r2_fresh",
+      "second_mp3-wav_r2_overwrite",
+      "second_wav-mp3_r2_overwrite"
+    ],
+    "complete_case_rerun_finished_unix_time": 1794735968.9989812,
+    "discarded_rows": 1008
+  },
+  {
+    "event": "correct-reference-ffmpeg-path",
+    "unix_time": 1794728745.079176,
+    "timed_runtime_ffmpeg": "/Users/research/homebrew/bin/ffmpeg",
+    "initial_reference_ffmpeg": "/Users/research/.local/bin/ffmpeg",
+    "status": "matched-reference-and-correctness-rerun-complete",
+    "candidate_runtime_unchanged": true,
+    "qualification_completed_unix_time": 1794736112.2067342
+  },
+  {
+    "event": "correct-declared-container-probe",
+    "unix_time": 1794729532.420688,
+    "evidence": "node-short-diagnostic.json",
+    "automatic_detection": "H.263, no audio stream, 2089 bytes",
+    "header_hex": "fffbe004",
+    "mpeg_version_bits": 3,
+    "layer_bits": 1,
+    "forced_mp3_decode_pcm_bytes": 18432,
+    "verification_change": "Force the declared WAV/MP3 demuxer for all validation files; no encoder, timing argv or numeric threshold change",
+    "status": "full-correctness-and-qualification-rerun-complete",
+    "full_rotated_cases_rerun": [
+      "short_wav-mp3_r1_fresh",
+      "short_wav-mp3_r1_overwrite"
+    ]
+  },
+  {
+    "event": "correct-publication-observation-diagnostic",
+    "status": "full-supplemental-rerun-complete",
+    "reason": "Eager error-message formatting called min() on an empty observation list even when the publication predicate passed. Use min(default=None); no predicate, threshold, candidate or timed measurement changed. Expected DSP coverage is corrected to 21: the existing generator skips one proposed alias tone above the input Nyquist.",
+    "unix_time": 1794736227.48734,
+    "completed_unix_time": 1794736358.5598478
+  }
+]

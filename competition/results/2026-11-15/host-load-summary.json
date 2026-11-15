@@ -1,0 +1,11 @@
+{
+  "minimum_interval_seconds": 1,
+  "intervals_analyzed": 346,
+  "cpu_busy_interval_percent_median": 21.073511135033876,
+  "cpu_busy_interval_percent_min": 14.939576630843376,
+  "cpu_busy_interval_percent_max": 71.25497127668463,
+  "one_minute_load_min": 3.59814453125,
+  "one_minute_load_max": 8.9423828125,
+  "swap_used_bytes_start": 17232494592,
+  "swap_used_bytes_end": 16012476416
+}

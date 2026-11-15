@@ -10,6 +10,16 @@ format. The four entry manifests are in `implementations/c`, `cpp`, `go`, and
 submillisecond boundary found during fresh review and how the later harness
 must report it without scoring failed exports as fast results.
 
+## Comparative results
+
+The separate [November 15 comparison](results/2026-11-15/REPORT.md) evaluates
+all six entries on arm64 macOS: 192 cases per entry, seven speed repetitions
+and a separate process-tree memory pass per case. Raw measurements, named
+correctness evidence, environment details and a standalone interactive page
+accompany the report. [Reproduction instructions](harness/README.md) pin the
+sources and protocol. All entries fail the valid two-frame MP3 input check;
+ordinary-export observations do not establish an overall contract winner.
+
 ## Harness integration
 
 Discover `implementations/*/entry.json`, validate against the schema, resolve

@@ -1,0 +1,86 @@
+[
+  {
+    "id": "zig",
+    "argv": [
+      "/Volumes/PortableSSD/scratch/resample-studio-zig-tools/zig-aarch64-macos-0.15.2/zig",
+      "build-exe",
+      "src/main.zig",
+      "-target",
+      "aarch64-macos.14.0",
+      "-O",
+      "ReleaseSafe",
+      "-femit-bin=resample"
+    ],
+    "cwd": "/Volumes/PortableSSD/scratch/resample-benchmark-20261115/zig",
+    "seconds": 3.6924871670198627,
+    "returncode": 0,
+    "binary_bytes": 379816,
+    "binary_sha256": "74a1ebc679a183934532886ba09e9e087d3f64b598884616c6a951366b1f8949"
+  },
+  {
+    "id": "c",
+    "argv": [
+      "make",
+      "all"
+    ],
+    "cwd": "/Volumes/PortableSSD/scratch/resample-benchmark-20261115/candidates/implementations/c",
+    "seconds": 0.13270224997540936,
+    "returncode": 0,
+    "binary_bytes": 37160,
+    "binary_sha256": "4179523d030bc965ca5328f651ed42b4ff0dad7c92af361dc390bbee36324228"
+  },
+  {
+    "id": "cpp",
+    "argv": [
+      "make",
+      "release"
+    ],
+    "cwd": "/Volumes/PortableSSD/scratch/resample-benchmark-20261115/candidates/implementations/cpp",
+    "seconds": 0.6358401249744929,
+    "returncode": 0,
+    "binary_bytes": 83384,
+    "binary_sha256": "890b91b747c0dc9120c1702dfd01ae9789ea07dd0b404c9e7b0a84b4aea304c3"
+  },
+  {
+    "id": "go",
+    "argv": [
+      "./build.sh"
+    ],
+    "cwd": "/Volumes/PortableSSD/scratch/resample-benchmark-20261115/candidates/implementations/go",
+    "seconds": 0.48303704196587205,
+    "returncode": 0,
+    "binary_bytes": 2199218,
+    "binary_sha256": "b97f0c5c918f131230b055d1d64a2f8923366da9820ef46ba42668dbb3a35ac5"
+  },
+  {
+    "id": "rust",
+    "argv": [
+      "cargo",
+      "build",
+      "--release",
+      "--locked"
+    ],
+    "cwd": "/Volumes/PortableSSD/scratch/resample-benchmark-20261115/candidates/implementations/rust",
+    "seconds": 3.066197332984302,
+    "returncode": 0,
+    "binary_bytes": 404288,
+    "binary_sha256": "b78d16dc2fe205db789fd2e8abf34b988b4e402f03046046b5aec15c4e40e451"
+  },
+  {
+    "id": "node",
+    "argv": [
+      "npm",
+      "exec",
+      "--yes",
+      "pnpm@10.11.0",
+      "--",
+      "install",
+      "--frozen-lockfile"
+    ],
+    "cwd": "/Volumes/PortableSSD/scratch/resample-benchmark-20261115/node",
+    "seconds": 1.1557636670186184,
+    "returncode": 0,
+    "binary_bytes": 132848,
+    "binary_sha256": "91ed66b8cd139609427a3e9d93518dd3b0d5407c737fc9a265bfd991ec623d8a"
+  }
+]

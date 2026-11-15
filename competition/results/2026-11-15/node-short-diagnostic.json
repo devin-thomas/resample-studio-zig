@@ -1,0 +1,150 @@
+{
+  "returncode": 0,
+  "stderr": "(node:62491) [DEP0205] DeprecationWarning: `module.register()` is deprecated. Use `module.registerHooks()` instead.\n(Use `node --trace-deprecation ...` to show where the warning was created)\n",
+  "ffmpeg": "/Users/research/homebrew/bin/ffmpeg",
+  "ffprobe": "/Users/research/homebrew/bin/ffprobe",
+  "default_probe": {
+    "streams": [
+      {
+        "index": 0,
+        "codec_name": "h263",
+        "codec_long_name": "H.263 / H.263-1996, H.263+ / H.263-1998 / H.263 version 2",
+        "codec_type": "video",
+        "codec_tag_string": "[0][0][0][0]",
+        "codec_tag": "0x0000",
+        "width": 0,
+        "height": 0,
+        "coded_width": 0,
+        "coded_height": 0,
+        "has_b_frames": 0,
+        "level": -99,
+        "chroma_location": "center",
+        "r_frame_rate": "1200000/1",
+        "avg_frame_rate": "25/1",
+        "time_base": "1/1200000",
+        "disposition": {
+          "default": 0,
+          "dub": 0,
+          "original": 0,
+          "comment": 0,
+          "lyrics": 0,
+          "karaoke": 0,
+          "forced": 0,
+          "hearing_impaired": 0,
+          "visual_impaired": 0,
+          "clean_effects": 0,
+          "attached_pic": 0,
+          "timed_thumbnails": 0,
+          "non_diegetic": 0,
+          "captions": 0,
+          "descriptions": 0,
+          "metadata": 0,
+          "dependent": 0,
+          "still_image": 0,
+          "multilayer": 0
+        }
+      }
+    ],
+    "chapters": [],
+    "format": {
+      "filename": "/Volumes/PortableSSD/scratch/resample-benchmark-20261115/node-short-diagnostic.mp3",
+      "nb_streams": 1,
+      "nb_programs": 0,
+      "nb_stream_groups": 0,
+      "format_name": "h263",
+      "format_long_name": "raw H.263",
+      "size": "2089",
+      "probe_score": 25
+    }
+  },
+  "declared_mp3_probe": {
+    "streams": [
+      {
+        "index": 0,
+        "codec_name": "mp3",
+        "codec_long_name": "MP3 (MPEG audio layer 3)",
+        "codec_type": "audio",
+        "codec_tag_string": "[0][0][0][0]",
+        "codec_tag": "0x0000",
+        "mime_codec_string": "mp4a.40.34",
+        "sample_fmt": "fltp",
+        "sample_rate": "44100",
+        "channels": 2,
+        "channel_layout": "stereo",
+        "bits_per_sample": 0,
+        "initial_padding": 0,
+        "r_frame_rate": "0/0",
+        "avg_frame_rate": "0/0",
+        "time_base": "1/14112000",
+        "start_pts": 0,
+        "start_time": "0.000000",
+        "duration_ts": 736999,
+        "duration": "0.052225",
+        "bit_rate": "320000",
+        "disposition": {
+          "default": 0,
+          "dub": 0,
+          "original": 0,
+          "comment": 0,
+          "lyrics": 0,
+          "karaoke": 0,
+          "forced": 0,
+          "hearing_impaired": 0,
+          "visual_impaired": 0,
+          "clean_effects": 0,
+          "attached_pic": 0,
+          "timed_thumbnails": 0,
+          "non_diegetic": 0,
+          "captions": 0,
+          "descriptions": 0,
+          "metadata": 0,
+          "dependent": 0,
+          "still_image": 0,
+          "multilayer": 0
+        }
+      }
+    ],
+    "chapters": [],
+    "format": {
+      "filename": "/Volumes/PortableSSD/scratch/resample-benchmark-20261115/node-short-diagnostic.mp3",
+      "nb_streams": 1,
+      "nb_programs": 0,
+      "nb_stream_groups": 0,
+      "format_name": "mp3",
+      "format_long_name": "MP2/3 (MPEG audio layer 2/3)",
+      "start_time": "0.000000",
+      "duration": "0.052225",
+      "size": "2089",
+      "bit_rate": "320000",
+      "probe_score": 0
+    }
+  },
+  "mp3_packets": {
+    "packets": [
+      {
+        "duration_time": "0.026122",
+        "size": "1044",
+        "pos": "0"
+      },
+      {
+        "duration_time": "0.026122",
+        "size": "1045",
+        "pos": "1044"
+      }
+    ]
+  },
+  "leading_sync_headers": [
+    {
+      "offset": 0,
+      "mpeg_version_bits": 3,
+      "layer_bits": 1,
+      "header_hex": "fffbe004"
+    }
+  ],
+  "forced_mp3_decode": {
+    "returncode": 0,
+    "pcm_bytes": 18432,
+    "stderr": ""
+  },
+  "bytes": 2089
+}

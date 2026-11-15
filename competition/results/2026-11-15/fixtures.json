@@ -1,0 +1,237 @@
+[
+  {
+    "file": "boundary-32000-1.wav",
+    "bytes": 46,
+    "sha256": "49b051811bdf2e1076947f02f7a77ccaab09d85cc315c28765349c3a140d3d55"
+  },
+  {
+    "file": "boundary-32000-10.wav",
+    "bytes": 64,
+    "sha256": "6dee6157f2d4cad8c7f69111a52c8194f11e35143c6aea0881932859477673bb"
+  },
+  {
+    "file": "boundary-32000-64.wav",
+    "bytes": 172,
+    "sha256": "899253afb63f2827c4cb87cc391040320bac6fb10088d31d94597f4d7bd43c41"
+  },
+  {
+    "file": "boundary-44100-1.wav",
+    "bytes": 46,
+    "sha256": "48f304b4730189540fb9a2b9c8d05d6aba5e55b1375efbd9e2ef28ed544a9743"
+  },
+  {
+    "file": "boundary-44100-10.wav",
+    "bytes": 64,
+    "sha256": "207fb03ec1236933d260110d1890df60da259c570d67aef5a79e0a2dbeeaca06"
+  },
+  {
+    "file": "boundary-44100-64.wav",
+    "bytes": 172,
+    "sha256": "97c7c59b41880c35ca321930ba853b60ccb21f4b5558de2412bb032c29ef38d2"
+  },
+  {
+    "file": "boundary-48000-1.wav",
+    "bytes": 46,
+    "sha256": "c00744703f8b1cc40f0178e56ba45d9f6e6f64d5491303b7a2ffd8e58c346401"
+  },
+  {
+    "file": "boundary-48000-10.wav",
+    "bytes": 64,
+    "sha256": "a3752d3b246319d30637b8f2592235548da2fb109e78405e0c1d3c4dd1a01614"
+  },
+  {
+    "file": "boundary-48000-64.wav",
+    "bytes": 172,
+    "sha256": "f4f5189b75001c74db4aeb777f9d4218c232ebeaecaade89651d58ae259966c7"
+  },
+  {
+    "file": "half-minute.mp3",
+    "bytes": 1201964,
+    "sha256": "4d7f9681e13d57fb126eb17506ac6049fcbffe1f674c1fd1cf46fee66213b60b"
+  },
+  {
+    "file": "half-minute.wav",
+    "bytes": 5760044,
+    "sha256": "49f04d475911dbed4f5327ae1c0b3d2d310a951adf12e3559c8f94ea1862136d"
+  },
+  {
+    "file": "impulse-32000.wav",
+    "bytes": 128044,
+    "sha256": "1d453e9aa59187f8a0977ab921bc99107b2e289c3db4982e7bfa0d21d95a1375"
+  },
+  {
+    "file": "impulse-44100.wav",
+    "bytes": 176444,
+    "sha256": "e36712a46008d1ea4089720e9b8abd77b78c9999d8a87d9f1c26ee6aeef9882e"
+  },
+  {
+    "file": "impulse-48000.wav",
+    "bytes": 192044,
+    "sha256": "b23c447814771b8d842547f201e6f84a25d0d25dc43e7e8f0483d2347c6c8ad9"
+  },
+  {
+    "file": "minute.mp3",
+    "bytes": 2401964,
+    "sha256": "07856d527e3d84761404b3150c02d960177178ff5c94346ef5fb1451fdbc0dd2"
+  },
+  {
+    "file": "minute.wav",
+    "bytes": 11520044,
+    "sha256": "70835a277c377bd84844a6354414c1fa6b10eb97e39f8e46ebdeeef935eafbc6"
+  },
+  {
+    "file": "mono-32000.wav",
+    "bytes": 64044,
+    "sha256": "ee8400e0e8891cb446ca803f05b9bd9d0539584050096b78c6017edbfc34bdb1"
+  },
+  {
+    "file": "mono-44100.mp3",
+    "bytes": 42884,
+    "sha256": "7572f7e3966348ff1fd5b3be60eb6ef85298df3078563462c3991a2a1d280648"
+  },
+  {
+    "file": "mono-44100.wav",
+    "bytes": 88244,
+    "sha256": "90cf8b2193e0cc766f6f8a0a68e173e1981d43b5e0838feacd0f12523b612094"
+  },
+  {
+    "file": "mono-48000.wav",
+    "bytes": 96044,
+    "sha256": "e4df7c1075940a8d01285505c96e080a5adae2c819ae7f16a0e9338e6a228110"
+  },
+  {
+    "file": "noise-32000.wav",
+    "bytes": 128044,
+    "sha256": "ae44186146a9d442e17d616e86b0e89ec5581befba7d62e586e744f71b14b633"
+  },
+  {
+    "file": "noise-44100.wav",
+    "bytes": 176444,
+    "sha256": "1df262be06e7015ffe1c671bbabb73a6f821a8925bd16e759a79d6d017aa431d"
+  },
+  {
+    "file": "noise-48000.wav",
+    "bytes": 192044,
+    "sha256": "eb0cddd76de87f47aeca1fc25673d389d4d9805408413a5e7bcee7f2643f5fd1"
+  },
+  {
+    "file": "second.mp3",
+    "bytes": 42284,
+    "sha256": "54852d9031f614d868f7170927f55410f488fb27c3112fcb31f668e30d0f203e"
+  },
+  {
+    "file": "second.wav",
+    "bytes": 192044,
+    "sha256": "ebc849feeed44c8cd63be6e169d552dcaf2a16dc6250100b96e63f2fc5b29a8a"
+  },
+  {
+    "file": "short-32000-0.005.wav",
+    "bytes": 364,
+    "sha256": "68cec511247aa46e6ebf7cc9f5236444627dcc46b65291e62173d5847173860f"
+  },
+  {
+    "file": "short-32000-0.02.wav",
+    "bytes": 1324,
+    "sha256": "52184eddd5bcbb3846a76bf9089d06a6a81e2d42d47fecb51b4af65e980f2a64"
+  },
+  {
+    "file": "short-44100-0.005.wav",
+    "bytes": 484,
+    "sha256": "99bc3d6f24828f0ecbbc5dd6fa2bd56f88abc77d7ee334e66610796f4b8b2366"
+  },
+  {
+    "file": "short-44100-0.02.wav",
+    "bytes": 1808,
+    "sha256": "47878ad81dd6b25dd0e39cd22dd7ccc867174ecf103a16be65b6a8706f16898b"
+  },
+  {
+    "file": "short-48000-0.005.wav",
+    "bytes": 524,
+    "sha256": "dccef542a7bcb84f4f18293eb9f07ec9d7b1f80e4c726ecfad1c1cc56e9b129a"
+  },
+  {
+    "file": "short-48000-0.02.wav",
+    "bytes": 1964,
+    "sha256": "e02884e3b730ce61761b028592c4f8acef3b0f558cff55f97dd1ece06210d756"
+  },
+  {
+    "file": "short.mp3",
+    "bytes": 2924,
+    "sha256": "bdeae9ccb4d7726b279cf77426f9a36c673078af2faa5be655492c7f19334b40"
+  },
+  {
+    "file": "short.wav",
+    "bytes": 3884,
+    "sha256": "4413644079d2443c2d7cb410879e775b52316612e6448a73871c2fd1b91e0d64"
+  },
+  {
+    "file": "silence-32000.wav",
+    "bytes": 128044,
+    "sha256": "20c0db2009499b6c338f4e949b070326eb3e8f58ccd00212f1c3077a5ec36688"
+  },
+  {
+    "file": "silence-44100.wav",
+    "bytes": 176444,
+    "sha256": "4057d79667b576cff0a0c2a32dc8c1eb80c2cdedf9b52d1de53d37c02b2e647c"
+  },
+  {
+    "file": "silence-48000.wav",
+    "bytes": 192044,
+    "sha256": "ede1f6dd33abfce7bb3a45ba79b0ab5f8baae692709dd32214a41da9af55ab13"
+  },
+  {
+    "file": "sixteenth.mp3",
+    "bytes": 152684,
+    "sha256": "ea583a0253c7741e58138954821a2facb34eef15ac33d0f240d78a0515b6e02d"
+  },
+  {
+    "file": "sixteenth.wav",
+    "bytes": 720044,
+    "sha256": "279e6058868c29f60759e015cdee00ba6a3d25fe9bfd1a1f23d9bb6773f16c92"
+  },
+  {
+    "file": "stereo-32000.mp3",
+    "bytes": 43244,
+    "sha256": "a47bb6c7bf9173afb39b35c235e3df98bfb2c6ca1aa883c189932ff371058a8d"
+  },
+  {
+    "file": "stereo-32000.wav",
+    "bytes": 128044,
+    "sha256": "d208327c1509962785dc957569a4b952efc3754673abadd6fdf69e549f645ef8"
+  },
+  {
+    "file": "stereo-44100.wav",
+    "bytes": 176444,
+    "sha256": "9bef900298e3fb205d6a86f0b13485f82ad2fe210f70bb9f82d756427482cd82"
+  },
+  {
+    "file": "stereo-48000.wav",
+    "bytes": 192044,
+    "sha256": "5859ece616de385f92788b92c6a649393fb5af4629588ce9112c9ecd45f96533"
+  },
+  {
+    "file": "sweep-32000.wav",
+    "bytes": 128044,
+    "sha256": "d59033a65aa09fa7d83d0b7a484985a90d4d3b9fe368585a0418154fd612facc"
+  },
+  {
+    "file": "sweep-44100.wav",
+    "bytes": 176444,
+    "sha256": "b2987deae6d89f83933372a07df7ebcdd4de30cb7b816c4cee749a62110aba05"
+  },
+  {
+    "file": "sweep-48000.wav",
+    "bytes": 192044,
+    "sha256": "d188101394022f7b5f17097c8343709e46a298f67817f9fac76d23c03a4d0c12"
+  },
+  {
+    "file": "ten-minute.mp3",
+    "bytes": 24001964,
+    "sha256": "1a65a0d470912e7966550acfc246630a285a8c90f6341a5648f09a003b14a33d"
+  },
+  {
+    "file": "ten-minute.wav",
+    "bytes": 115200044,
+    "sha256": "5e430aa2ee47269607cb4bb05ce245fedd23c943a0bbcb06d822ab176bc50a3f"
+  }
+]

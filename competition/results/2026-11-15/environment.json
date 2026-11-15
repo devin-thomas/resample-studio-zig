@@ -1,0 +1,484 @@
+{
+  "ffmpeg": "ffmpeg version 9.0.1 Copyright (c) 2000-2026 the FFmpeg developers\nbuilt with Apple clang version 21.0.0 (clang-2100.1.1.101)\nconfiguration: --prefix=/Users/research/homebrew/Cellar/ffmpeg/9.0.1_1 --enable-shared --enable-pthreads --enable-version3 --cc=clang --host-cflags= --host-ldflags= --enable-ffplay --enable-gpl --enable-libsvtav1 --enable-libopus --enable-libx264 --enable-libmp3lame --enable-libdav1d --enable-libvmaf --enable-libvpx --enable-libx265 --enable-openssl --enable-videotoolbox --enable-audiotoolbox --enable-neon\nlibavutil      61.  1.101 / 61.  1.101\nlibavcodec     63.  1.101 / 63.  1.101\nlibavformat    63.  1.101 / 63.  1.101\nlibavdevice    63.  1.101 / 63.  1.101\nlibavfilter    12.  1.101 / 12.  1.101\nlibswscale     10.  1.101 / 10.  1.101\nlibswresample   7.  1.101 /  7.  1.101\n\nExiting with exit code 0\n",
+  "ffmpeg-build": "ffmpeg version 9.0.1 Copyright (c) 2000-2026 the FFmpeg developers\n  built with Apple clang version 21.0.0 (clang-2100.1.1.101)\n  configuration: --prefix=/Users/research/homebrew/Cellar/ffmpeg/9.0.1_1 --enable-shared --enable-pthreads --enable-version3 --cc=clang --host-cflags= --host-ldflags= --enable-ffplay --enable-gpl --enable-libsvtav1 --enable-libopus --enable-libx264 --enable-libmp3lame --enable-libdav1d --enable-libvmaf --enable-libvpx --enable-libx265 --enable-openssl --enable-videotoolbox --enable-audiotoolbox --enable-neon\n  libavutil      61.  1.101 / 61.  1.101\n  libavcodec     63.  1.101 / 63.  1.101\n  libavformat    63.  1.101 / 63.  1.101\n  libavdevice    63.  1.101 / 63.  1.101\n  libavfilter    12.  1.101 / 12.  1.101\n  libswscale     10.  1.101 / 10.  1.101\n  libswresample   7.  1.101 /  7.  1.101\n\n  configuration:\n    --prefix=/Users/research/homebrew/Cellar/ffmpeg/9.0.1_1\n    --enable-shared\n    --enable-pthreads\n    --enable-version3\n    --cc=clang\n    --host-cflags=\n    --host-ldflags=\n    --enable-ffplay\n    --enable-gpl\n    --enable-libsvtav1\n    --enable-libopus\n    --enable-libx264\n    --enable-libmp3lame\n    --enable-libdav1d\n    --enable-libvmaf\n    --enable-libvpx\n    --enable-libx265\n    --enable-openssl\n    --enable-videotoolbox\n    --enable-audiotoolbox\n    --enable-neon\n\nExiting with exit code 0\n",
+  "ffprobe": "ffprobe version 9.0.1 Copyright (c) 2007-2026 the FFmpeg developers\nbuilt with Apple clang version 21.0.0 (clang-2100.1.1.101)\nconfiguration: --prefix=/Users/research/homebrew/Cellar/ffmpeg/9.0.1_1 --enable-shared --enable-pthreads --enable-version3 --cc=clang --host-cflags= --host-ldflags= --enable-ffplay --enable-gpl --enable-libsvtav1 --enable-libopus --enable-libx264 --enable-libmp3lame --enable-libdav1d --enable-libvmaf --enable-libvpx --enable-libx265 --enable-openssl --enable-videotoolbox --enable-audiotoolbox --enable-neon\nlibavutil      61.  1.101 / 61.  1.101\nlibavcodec     63.  1.101 / 63.  1.101\nlibavformat    63.  1.101 / 63.  1.101\nlibavdevice    63.  1.101 / 63.  1.101\nlibavfilter    12.  1.101 / 12.  1.101\nlibswscale     10.  1.101 / 10.  1.101\nlibswresample   7.  1.101 /  7.  1.101\n",
+  "node": "v26.9.0\n",
+  "clang": "Apple clang version 21.0.0 (clang-2100.3.34.2)\nTarget: arm64-apple-darwin27.2.0\nThread model: posix\nInstalledDir: /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin\n",
+  "go": "go version go1.27.1 darwin/arm64\n",
+  "rust": "rustc 1.97.1 (8bab26f4f 2026-07-14) (Homebrew)\nbinary: rustc\ncommit-hash: 8bab26f4f68e0e26f0bb7960be334d5b520ea452\ncommit-date: 2026-07-14\nhost: aarch64-apple-darwin\nrelease: 1.97.1\nLLVM version: 22.1.8\n",
+  "cargo": "cargo 1.97.1 (c980f4866 2026-06-30) (Homebrew)\n",
+  "host": "hw.model: Mac17,14\nhw.ncpu: 18\nhw.memsize: 38654705664\nhw.physicalcpu: 18\n",
+  "os": "ProductName:\t\tmacOS\nProductVersion:\t\t27.2\nBuildVersion:\t\t26B123\n",
+  "disk": "Filesystem      Size    Used   Avail Capacity iused ifree %iused  Mounted on\n/dev/disk7s1   1.8Ti   1.5Ti   360Gi    81%     74M  3.8G    2%   /Volumes/PortableSSD\n",
+  "ffmpeg-sha256": "0daf838489531f804bba7c9671a46c201bbd6cf9d6ae47a61874917189e1ccbc",
+  "ffprobe-sha256": "3b30ab1367715c467b73039928b26d0bf04a9986ffd0508bb96ad61823ca20a9",
+  "zig": "0.15.2\n",
+  "node-lock-sha256": "e9ccc58908a0afe4bb5205733b2d0be5325ec77b51faae9412fad5172c2057af",
+  "dependencies": {
+    "zig": {
+      "file": "/Volumes/PortableSSD/scratch/resample-benchmark-20261115/zig/resample: Mach-O 64-bit executable arm64\n",
+      "linkage": "/Volumes/PortableSSD/scratch/resample-benchmark-20261115/zig/resample:\n\t/usr/lib/libSystem.B.dylib (compatibility version 1.0.0, current version 1351.0.0)\n"
+    },
+    "c": {
+      "file": "/Volumes/PortableSSD/scratch/resample-benchmark-20261115/candidates/implementations/c/resample: Mach-O 64-bit executable arm64\n",
+      "linkage": "/Volumes/PortableSSD/scratch/resample-benchmark-20261115/candidates/implementations/c/resample:\n\t/usr/lib/libSystem.B.dylib (compatibility version 1.0.0, current version 1359.0.0)\n",
+      "compile_log": "cc -O3 -DNDEBUG -std=c11 -Wall -Wextra -Wpedantic -Wconversion -Wshadow main.c -o resample -lm\n"
+    },
+    "cpp": {
+      "file": "/Volumes/PortableSSD/scratch/resample-benchmark-20261115/candidates/implementations/cpp/build/resample: Mach-O 64-bit executable arm64\n",
+      "linkage": "/Volumes/PortableSSD/scratch/resample-benchmark-20261115/candidates/implementations/cpp/build/resample:\n\t/usr/lib/libc++.1.dylib (compatibility version 1.0.0, current version 2200.27.0)\n\t/usr/lib/libSystem.B.dylib (compatibility version 1.0.0, current version 1359.0.0)\n",
+      "compile_log": "mkdir -p build\nc++ -std=c++17 -O3 -DNDEBUG -Wall -Wextra -Wpedantic main.cpp -o build/resample\n"
+    },
+    "go": {
+      "file": "/Volumes/PortableSSD/scratch/resample-benchmark-20261115/candidates/implementations/go/bin/resample: Mach-O 64-bit executable arm64\n",
+      "linkage": "/Volumes/PortableSSD/scratch/resample-benchmark-20261115/candidates/implementations/go/bin/resample:\n\t/usr/lib/libSystem.B.dylib (compatibility version 0.0.0, current version 0.0.0)\n\t/usr/lib/libresolv.9.dylib (compatibility version 0.0.0, current version 0.0.0)\n",
+      "go_build_info": "/Volumes/PortableSSD/scratch/resample-benchmark-20261115/candidates/implementations/go/bin/resample: go1.27.1\n\tpath\tresample-go\n\tmod\tresample-go\t(devel)\t\n\tbuild\t-buildmode=exe\n\tbuild\t-compiler=gc\n\tbuild\t-trimpath=true\n\tbuild\tDefaultGODEBUG=containermaxprocs=0,cryptocustomrand=1,decoratemappings=0,gotestjsonbuildtext=1,httpcookiemaxnum=0,multipathtcp=0,randseednop=0,rsa1024min=0,tlsmlkem=0,tlssecpmlkem=0,tlssha1=1,tracebacklabels=0,updatemaxprocs=0,urlmaxqueryparams=0,urlstrictcolons=0,x509rsacrt=0,x509sha256skid=0,x509sslcertoverrideplatform=0,x509usepolicies=0\n\tbuild\tCGO_ENABLED=0\n\tbuild\tGOARCH=arm64\n\tbuild\tGOOS=darwin\n\tbuild\tGOARM64=v8.0\n\tbuild\tvcs=git\n\tbuild\tvcs.revision=ebb4fb2b19b68c0a4cce02b5b125c8e4be1c349a\n\tbuild\tvcs.time=2026-11-15T05:19:05Z\n\tbuild\tvcs.modified=false\n"
+    },
+    "rust": {
+      "file": "/Volumes/PortableSSD/scratch/resample-benchmark-20261115/candidates/implementations/rust/target/release/resample: Mach-O 64-bit executable arm64\n",
+      "linkage": "/Volumes/PortableSSD/scratch/resample-benchmark-20261115/candidates/implementations/rust/target/release/resample:\n\t/usr/lib/libiconv.2.dylib (compatibility version 7.0.0, current version 7.0.0)\n\t/usr/lib/libSystem.B.dylib (compatibility version 1.0.0, current version 1359.0.0)\n"
+    },
+    "node": {
+      "file": "/opt/homebrew/bin/node: Mach-O 64-bit executable arm64\n",
+      "linkage": "/opt/homebrew/bin/node:\n\t@rpath/libnode.147.dylib (compatibility version 0.0.0, current version 0.0.0)\n\t/usr/lib/libz.1.dylib (compatibility version 1.0.0, current version 1.2.12)\n\t/opt/homebrew/opt/llhttp/lib/libllhttp.9.4.dylib (compatibility version 9.4.0, current version 9.4.3)\n\t/opt/homebrew/opt/libuv/lib/libuv.1.dylib (compatibility version 1.0.0, current version 1.0.0)\n\t/opt/homebrew/opt/abseil/lib/libabsl_log_internal_check_op.2608.0.0.dylib (compatibility version 2608.0.0, current version 0.0.0)\n\t/opt/homebrew/opt/abseil/lib/libabsl_die_if_null.2608.0.0.dylib (compatibility version 2608.0.0, current version 0.0.0)\n\t/opt/homebrew/opt/abseil/lib/libabsl_log_internal_conditions.2608.0.0.dylib (compatibility version 2608.0.0, current version 0.0.0)\n\t/opt/homebrew/opt/abseil/lib/libabsl_log_internal_message.2608.0.0.dylib (compatibility version 2608.0.0, current version 0.0.0)\n\t/opt/homebrew/opt/abseil/lib/libabsl_log_internal_format.2608.0.0.dylib (compatibility version 2608.0.0, current version 0.0.0)\n\t/opt/homebrew/opt/abseil/lib/libabsl_log_internal_nullguard.2608.0.0.dylib (compatibility version 2608.0.0, current version 0.0.0)\n\t/opt/homebrew/opt/abseil/lib/libabsl_log_internal_structured_proto.2608.0.0.dylib (compatibility version 2608.0.0, current version 0.0.0)\n\t/opt/homebrew/opt/abseil/lib/libabsl_failure_signal_handler.2608.0.0.dylib (compatibility version 2608.0.0, current version 0.0.0)\n\t/opt/homebrew/opt/abseil/lib/libabsl_examine_stack.2608.0.0.dylib (compatibility version 2608.0.0, current version 0.0.0)\n\t/opt/homebrew/opt/abseil/lib/libabsl_log_initialize.2608.0.0.dylib (compatibility version 2608.0.0, current version 0.0.0)\n\t/opt/homebrew/opt/abseil/lib/libabsl_log_internal_log_sink_set.2608.0.0.dylib (compatibility version 2608.0.0, current version 0.0.0)\n\t/opt/homebrew/opt/abseil/lib/libabsl_log_internal_globals.2608.0.0.dylib (compatibility version 2608.0.0, current version 0.0.0)\n\t/opt/homebrew/opt/abseil/lib/libabsl_log_globals.2608.0.0.dylib (compatibility version 2608.0.0, current version 0.0.0)\n\t/opt/homebrew/opt/abseil/lib/libabsl_vlog_config_internal.2608.0.0.dylib (compatibility version 2608.0.0, current version 0.0.0)\n\t/opt/homebrew/opt/abseil/lib/libabsl_log_internal_fnmatch.2608.0.0.dylib (compatibility version 2608.0.0, current version 0.0.0)\n\t/opt/homebrew/opt/abseil/lib/libabsl_log_sink.2608.0.0.dylib (compatibility version 2608.0.0, current version 0.0.0)\n\t/opt/homebrew/opt/abseil/lib/libabsl_log_entry.2608.0.0.dylib (compatibility version 2608.0.0, current version 0.0.0)\n\t/opt/homebrew/opt/abseil/lib/libabsl_log_internal_proto.2608.0.0.dylib (compatibility version 2608.0.0, current version 0.0.0)\n\t/opt/homebrew/opt/abseil/lib/libabsl_raw_hash_set.2608.0.0.dylib (compatibility version 2608.0.0, current version 0.0.0)\n\t/opt/homebrew/opt/abseil/lib/libabsl_hashtablez_sampler.2608.0.0.dylib (compatibility version 2608.0.0, current version 0.0.0)\n\t/opt/homebrew/opt/abseil/lib/libabsl_random_distributions.2608.0.0.dylib (compatibility version 2608.0.0, current version 0.0.0)\n\t/opt/homebrew/opt/abseil/lib/libabsl_random_seed_sequences.2608.0.0.dylib (compatibility version 2608.0.0, current version 0.0.0)\n\t/opt/homebrew/opt/abseil/lib/libabsl_random_internal_entropy_pool.2608.0.0.dylib (compatibility version 2608.0.0, current version 0.0.0)\n\t/opt/homebrew/opt/abseil/lib/libabsl_random_internal_randen.2608.0.0.dylib (compatibility version 2608.0.0, current version 0.0.0)\n\t/opt/homebrew/opt/abseil/lib/libabsl_random_internal_randen_hwaes.2608.0.0.dylib (compatibility version 2608.0.0, current version 0.0.0)\n\t/opt/homebrew/opt/abseil/lib/libabsl_random_internal_randen_hwaes_impl.2608.0.0.dylib (compatibility version 2608.0.0, current version 0.0.0)\n\t/opt/homebrew/opt/abseil/lib/libabsl_random_internal_randen_slow.2608.0.0.dylib (compatibility version 2608.0.0, current version 0.0.0)\n\t/opt/homebrew/opt/abseil/lib/libabsl_random_internal_platform.2608.0.0.dylib (compatibility version 2608.0.0, current version 0.0.0)\n\t/opt/homebrew/opt/abseil/lib/libabsl_random_internal_seed_material.2608.0.0.dylib (compatibility version 2608.0.0, current version 0.0.0)\n\t/opt/homebrew/opt/abseil/lib/libabsl_random_seed_gen_exception.2608.0.0.dylib (compatibility version 2608.0.0, current version 0.0.0)\n\t/opt/homebrew/opt/abseil/lib/libabsl_statusor.2608.0.0.dylib (compatibility version 2608.0.0, current version 0.0.0)\n\t/opt/homebrew/opt/abseil/lib/libabsl_status.2608.0.0.dylib (compatibility version 2608.0.0, current version 0.0.0)\n\t/opt/homebrew/opt/abseil/lib/libabsl_cord.2608.0.0.dylib (compatibility version 2608.0.0, current version 0.0.0)\n\t/opt/homebrew/opt/abseil/lib/libabsl_cordz_info.2608.0.0.dylib (compatibility version 2608.0.0, current version 0.0.0)\n\t/opt/homebrew/opt/abseil/lib/libabsl_cord_internal.2608.0.0.dylib (compatibility version 2608.0.0, current version 0.0.0)\n\t/opt/homebrew/opt/abseil/lib/libabsl_hash.2608.0.0.dylib (compatibility version 2608.0.0, current version 0.0.0)\n\t/opt/homebrew/opt/abseil/lib/libabsl_city.2608.0.0.dylib (compatibility version 2608.0.0, current version 0.0.0)\n\t/opt/homebrew/opt/abseil/lib/libabsl_cordz_functions.2608.0.0.dylib (compatibility version 2608.0.0, current version 0.0.0)\n\t/opt/homebrew/opt/abseil/lib/libabsl_exponential_biased.2608.0.0.dylib (compatibility version 2608.0.0, current version 0.0.0)\n\t/opt/homebrew/opt/abseil/lib/libabsl_cordz_handle.2608.0.0.dylib (compatibility version 2608.0.0, current version 0.0.0)\n\t/opt/homebrew/opt/abseil/lib/libabsl_crc_cord_state.2608.0.0.dylib (compatibility version 2608.0.0, current version 0.0.0)\n\t/opt/homebrew/opt/abseil/lib/libabsl_crc32c.2608.0.0.dylib (compatibility version 2608.0.0, current version 0.0.0)\n\t/opt/homebrew/opt/abseil/lib/libabsl_crc_internal.2608.0.0.dylib (compatibility version 2608.0.0, current version 0.0.0)\n\t/opt/homebrew/opt/abseil/lib/libabsl_base_cpu_detect.2608.0.0.dylib (compatibility version 2608.0.0, current version 0.0.0)\n\t/opt/homebrew/opt/abseil/lib/libabsl_leak_check.2608.0.0.dylib (compatibility version 2608.0.0, current version 0.0.0)\n\t/opt/homebrew/opt/abseil/lib/libabsl_strerror.2608.0.0.dylib (compatibility version 2608.0.0, current version 0.0.0)\n\t/opt/homebrew/opt/abseil/lib/libabsl_str_format_internal.2608.0.0.dylib (compatibility version 2608.0.0, current version 0.0.0)\n\t/opt/homebrew/opt/abseil/lib/libabsl_synchronization.2608.0.0.dylib (compatibility version 2608.0.0, current version 0.0.0)\n\t/opt/homebrew/opt/abseil/lib/libabsl_graphcycles_internal.2608.0.0.dylib (compatibility version 2608.0.0, current version 0.0.0)\n\t/opt/homebrew/opt/abseil/lib/libabsl_kernel_timeout_internal.2608.0.0.dylib (compatibility version 2608.0.0, current version 0.0.0)\n\t/opt/homebrew/opt/abseil/lib/libabsl_stacktrace.2608.0.0.dylib (compatibility version 2608.0.0, current version 0.0.0)\n\t/opt/homebrew/opt/abseil/lib/libabsl_symbolize.2608.0.0.dylib (compatibility version 2608.0.0, current version 0.0.0)\n\t/opt/homebrew/opt/abseil/lib/libabsl_debugging_internal.2608.0.0.dylib (compatibility version 2608.0.0, current version 0.0.0)\n\t/opt/homebrew/opt/abseil/lib/libabsl_demangle_internal.2608.0.0.dylib (compatibility version 2608.0.0, current version 0.0.0)\n\t/opt/homebrew/opt/abseil/lib/libabsl_demangle_rust.2608.0.0.dylib (compatibility version 2608.0.0, current version 0.0.0)\n\t/opt/homebrew/opt/abseil/lib/libabsl_decode_rust_punycode.2608.0.0.dylib (compatibility version 2608.0.0, current version 0.0.0)\n\t/opt/homebrew/opt/abseil/lib/libabsl_utf8_for_code_point.2608.0.0.dylib (compatibility version 2608.0.0, current version 0.0.0)\n\t/opt/homebrew/opt/abseil/lib/libabsl_malloc_internal.2608.0.0.dylib (compatibility version 2608.0.0, current version 0.0.0)\n\t/opt/homebrew/opt/abseil/lib/libabsl_tracing_internal.2608.0.0.dylib (compatibility version 2608.0.0, current version 0.0.0)\n\t/opt/homebrew/opt/abseil/lib/libabsl_time.2608.0.0.dylib (compatibility version 2608.0.0, current version 0.0.0)\n\t/opt/homebrew/opt/abseil/lib/libabsl_civil_time.2608.0.0.dylib (compatibility version 2608.0.0, current version 0.0.0)\n\t/opt/homebrew/opt/abseil/lib/libabsl_strings.2608.0.0.dylib (compatibility version 2608.0.0, current version 0.0.0)\n\t/opt/homebrew/opt/abseil/lib/libabsl_strings_internal.2608.0.0.dylib (compatibility version 2608.0.0, current version 0.0.0)\n\t/opt/homebrew/opt/abseil/lib/libabsl_hardening.2608.0.0.dylib (compatibility version 2608.0.0, current version 0.0.0)\n\t/opt/homebrew/opt/abseil/lib/libabsl_int128.2608.0.0.dylib (compatibility version 2608.0.0, current version 0.0.0)\n\t/opt/homebrew/opt/abseil/lib/libabsl_base.2608.0.0.dylib (compatibility version 2608.0.0, current version 0.0.0)\n\t/opt/homebrew/opt/abseil/lib/libabsl_spinlock_wait.2608.0.0.dylib (compatibility version 2608.0.0, current version 0.0.0)\n\t/opt/homebrew/opt/abseil/lib/libabsl_source_location.2608.0.0.dylib (compatibility version 2608.0.0, current version 0.0.0)\n\t/opt/homebrew/opt/abseil/lib/libabsl_throw_delegate.2608.0.0.dylib (compatibility version 2608.0.0, current version 0.0.0)\n\t/opt/homebrew/opt/abseil/lib/libabsl_raw_logging_internal.2608.0.0.dylib (compatibility version 2608.0.0, current version 0.0.0)\n\t/opt/homebrew/opt/abseil/lib/libabsl_log_severity.2608.0.0.dylib (compatibility version 2608.0.0, current version 0.0.0)\n\t/opt/homebrew/opt/abseil/lib/libabsl_time_zone.2608.0.0.dylib (compatibility version 2608.0.0, current version 0.0.0)\n\t/opt/homebrew/opt/ada-url/lib/libada.4.dylib (compatibility version 4.0.0, current version 4.0.0)\n\t/opt/homebrew/opt/simdjson/lib/libsimdjson.33.dylib (compatibility version 33.0.0, current version 33.0.0)\n\t/opt/homebrew/opt/brotli/lib/libbrotlidec.1.dylib (compatibility version 1.0.0, current version 1.2.0)\n\t/opt/homebrew/opt/brotli/lib/libbrotlienc.1.dylib (compatibility version 1.0.0, current version 1.2.0)\n\t/opt/homebrew/opt/c-ares/lib/libcares.2.dylib (compatibility version 2.0.0, current version 2.19.7)\n\t/opt/homebrew/opt/hdrhistogram_c/lib/libhdr_histogram.6.dylib (compatibility version 6.0.0, current version 6.3.3)\n\t/opt/homebrew/opt/highway/lib/libhwy.1.dylib (compatibility version 1.0.0, current version 1.4.0)\n\t/opt/homebrew/opt/merve/lib/libmerve.1.dylib (compatibility version 1.0.0, current version 1.2.2)\n\t/opt/homebrew/opt/nbytes/lib/libnbytes.dylib (compatibility version 0.0.0, current version 0.0.0)\n\t/opt/homebrew/opt/libnghttp2/lib/libnghttp2.14.dylib (compatibility version 44.0.0, current version 44.5.0)\n\t/opt/homebrew/opt/sqlite/lib/libsqlite3.dylib (compatibility version 9.0.0, current version 9.6.0)\n\t/opt/homebrew/opt/libffi/lib/libffi.8.dylib (compatibility version 14.0.0, current version 14.0.0)\n\t/opt/homebrew/opt/uvwasi/lib/libuvwasi.dylib (compatibility version 0.0.0, current version 0.0.0)\n\t/opt/homebrew/opt/zstd/lib/libzstd.1.dylib (compatibility version 1.0.0, current version 1.5.7)\n\t/opt/homebrew/opt/openssl@3/lib/libcrypto.3.dylib (compatibility version 3.0.0, current version 3.0.0)\n\t/opt/homebrew/opt/openssl@3/lib/libssl.3.dylib (compatibility version 3.0.0, current version 3.0.0)\n\t/opt/homebrew/opt/icu4c@78/lib/libicui18n.78.dylib (compatibility version 78.0.0, current version 78.3.0)\n\t/opt/homebrew/opt/icu4c@78/lib/libicuuc.78.dylib (compatibility version 78.0.0, current version 78.3.0)\n\t/System/Library/Frameworks/CoreFoundation.framework/Versions/A/CoreFoundation (compatibility version 150.0.0, current version 5027.0.69)\n\t/System/Library/Frameworks/Security.framework/Versions/A/Security (compatibility version 1.0.0, current version 62460.1.2)\n\t/usr/lib/libc++.1.dylib (compatibility version 1.0.0, current version 2200.27.0)\n\t/usr/lib/libSystem.B.dylib (compatibility version 1.0.0, current version 1359.0.0)\n",
+      "linked_homebrew_libraries": [
+        {
+          "path": "/opt/homebrew/opt/llhttp/lib/libllhttp.9.4.dylib",
+          "bytes": 77664
+        },
+        {
+          "path": "/opt/homebrew/opt/libuv/lib/libuv.1.dylib",
+          "bytes": 189408
+        },
+        {
+          "path": "/opt/homebrew/opt/abseil/lib/libabsl_log_internal_check_op.2608.0.0.dylib",
+          "bytes": 95104
+        },
+        {
+          "path": "/opt/homebrew/opt/abseil/lib/libabsl_die_if_null.2608.0.0.dylib",
+          "bytes": 84672
+        },
+        {
+          "path": "/opt/homebrew/opt/abseil/lib/libabsl_log_internal_conditions.2608.0.0.dylib",
+          "bytes": 34224
+        },
+        {
+          "path": "/opt/homebrew/opt/abseil/lib/libabsl_log_internal_message.2608.0.0.dylib",
+          "bytes": 130816
+        },
+        {
+          "path": "/opt/homebrew/opt/abseil/lib/libabsl_log_internal_format.2608.0.0.dylib",
+          "bytes": 54240
+        },
+        {
+          "path": "/opt/homebrew/opt/abseil/lib/libabsl_log_internal_nullguard.2608.0.0.dylib",
+          "bytes": 17200
+        },
+        {
+          "path": "/opt/homebrew/opt/abseil/lib/libabsl_log_internal_structured_proto.2608.0.0.dylib",
+          "bytes": 55552
+        },
+        {
+          "path": "/opt/homebrew/opt/abseil/lib/libabsl_failure_signal_handler.2608.0.0.dylib",
+          "bytes": 69216
+        },
+        {
+          "path": "/opt/homebrew/opt/abseil/lib/libabsl_examine_stack.2608.0.0.dylib",
+          "bytes": 51424
+        },
+        {
+          "path": "/opt/homebrew/opt/abseil/lib/libabsl_log_initialize.2608.0.0.dylib",
+          "bytes": 66976
+        },
+        {
+          "path": "/opt/homebrew/opt/abseil/lib/libabsl_log_internal_log_sink_set.2608.0.0.dylib",
+          "bytes": 91744
+        },
+        {
+          "path": "/opt/homebrew/opt/abseil/lib/libabsl_log_internal_globals.2608.0.0.dylib",
+          "bytes": 69024
+        },
+        {
+          "path": "/opt/homebrew/opt/abseil/lib/libabsl_log_globals.2608.0.0.dylib",
+          "bytes": 89296
+        },
+        {
+          "path": "/opt/homebrew/opt/abseil/lib/libabsl_vlog_config_internal.2608.0.0.dylib",
+          "bytes": 77968
+        },
+        {
+          "path": "/opt/homebrew/opt/abseil/lib/libabsl_log_internal_fnmatch.2608.0.0.dylib",
+          "bytes": 33968
+        },
+        {
+          "path": "/opt/homebrew/opt/abseil/lib/libabsl_log_sink.2608.0.0.dylib",
+          "bytes": 50624
+        },
+        {
+          "path": "/opt/homebrew/opt/abseil/lib/libabsl_log_entry.2608.0.0.dylib",
+          "bytes": 54512
+        },
+        {
+          "path": "/opt/homebrew/opt/abseil/lib/libabsl_log_internal_proto.2608.0.0.dylib",
+          "bytes": 51072
+        },
+        {
+          "path": "/opt/homebrew/opt/abseil/lib/libabsl_raw_hash_set.2608.0.0.dylib",
+          "bytes": 115168
+        },
+        {
+          "path": "/opt/homebrew/opt/abseil/lib/libabsl_hashtablez_sampler.2608.0.0.dylib",
+          "bytes": 89712
+        },
+        {
+          "path": "/opt/homebrew/opt/abseil/lib/libabsl_random_distributions.2608.0.0.dylib",
+          "bytes": 52496
+        },
+        {
+          "path": "/opt/homebrew/opt/abseil/lib/libabsl_random_seed_sequences.2608.0.0.dylib",
+          "bytes": 68736
+        },
+        {
+          "path": "/opt/homebrew/opt/abseil/lib/libabsl_random_internal_entropy_pool.2608.0.0.dylib",
+          "bytes": 87232
+        },
+        {
+          "path": "/opt/homebrew/opt/abseil/lib/libabsl_random_internal_randen.2608.0.0.dylib",
+          "bytes": 34944
+        },
+        {
+          "path": "/opt/homebrew/opt/abseil/lib/libabsl_random_internal_randen_hwaes.2608.0.0.dylib",
+          "bytes": 34704
+        },
+        {
+          "path": "/opt/homebrew/opt/abseil/lib/libabsl_random_internal_randen_hwaes_impl.2608.0.0.dylib",
+          "bytes": 34080
+        },
+        {
+          "path": "/opt/homebrew/opt/abseil/lib/libabsl_random_internal_randen_slow.2608.0.0.dylib",
+          "bytes": 34096
+        },
+        {
+          "path": "/opt/homebrew/opt/abseil/lib/libabsl_random_internal_platform.2608.0.0.dylib",
+          "bytes": 17120
+        },
+        {
+          "path": "/opt/homebrew/opt/abseil/lib/libabsl_random_internal_seed_material.2608.0.0.dylib",
+          "bytes": 51424
+        },
+        {
+          "path": "/opt/homebrew/opt/abseil/lib/libabsl_random_seed_gen_exception.2608.0.0.dylib",
+          "bytes": 34752
+        },
+        {
+          "path": "/opt/homebrew/opt/abseil/lib/libabsl_statusor.2608.0.0.dylib",
+          "bytes": 89456
+        },
+        {
+          "path": "/opt/homebrew/opt/abseil/lib/libabsl_status.2608.0.0.dylib",
+          "bytes": 125024
+        },
+        {
+          "path": "/opt/homebrew/opt/abseil/lib/libabsl_cord.2608.0.0.dylib",
+          "bytes": 148176
+        },
+        {
+          "path": "/opt/homebrew/opt/abseil/lib/libabsl_cordz_info.2608.0.0.dylib",
+          "bytes": 89120
+        },
+        {
+          "path": "/opt/homebrew/opt/abseil/lib/libabsl_cord_internal.2608.0.0.dylib",
+          "bytes": 101296
+        },
+        {
+          "path": "/opt/homebrew/opt/abseil/lib/libabsl_hash.2608.0.0.dylib",
+          "bytes": 51152
+        },
+        {
+          "path": "/opt/homebrew/opt/abseil/lib/libabsl_city.2608.0.0.dylib",
+          "bytes": 17312
+        },
+        {
+          "path": "/opt/homebrew/opt/abseil/lib/libabsl_cordz_functions.2608.0.0.dylib",
+          "bytes": 33760
+        },
+        {
+          "path": "/opt/homebrew/opt/abseil/lib/libabsl_exponential_biased.2608.0.0.dylib",
+          "bytes": 33984
+        },
+        {
+          "path": "/opt/homebrew/opt/abseil/lib/libabsl_cordz_handle.2608.0.0.dylib",
+          "bytes": 71728
+        },
+        {
+          "path": "/opt/homebrew/opt/abseil/lib/libabsl_crc_cord_state.2608.0.0.dylib",
+          "bytes": 57104
+        },
+        {
+          "path": "/opt/homebrew/opt/abseil/lib/libabsl_crc32c.2608.0.0.dylib",
+          "bytes": 74096
+        },
+        {
+          "path": "/opt/homebrew/opt/abseil/lib/libabsl_crc_internal.2608.0.0.dylib",
+          "bytes": 61712
+        },
+        {
+          "path": "/opt/homebrew/opt/abseil/lib/libabsl_base_cpu_detect.2608.0.0.dylib",
+          "bytes": 34688
+        },
+        {
+          "path": "/opt/homebrew/opt/abseil/lib/libabsl_leak_check.2608.0.0.dylib",
+          "bytes": 17696
+        },
+        {
+          "path": "/opt/homebrew/opt/abseil/lib/libabsl_strerror.2608.0.0.dylib",
+          "bytes": 35920
+        },
+        {
+          "path": "/opt/homebrew/opt/abseil/lib/libabsl_str_format_internal.2608.0.0.dylib",
+          "bytes": 124992
+        },
+        {
+          "path": "/opt/homebrew/opt/abseil/lib/libabsl_synchronization.2608.0.0.dylib",
+          "bytes": 123904
+        },
+        {
+          "path": "/opt/homebrew/opt/abseil/lib/libabsl_graphcycles_internal.2608.0.0.dylib",
+          "bytes": 56608
+        },
+        {
+          "path": "/opt/homebrew/opt/abseil/lib/libabsl_kernel_timeout_internal.2608.0.0.dylib",
+          "bytes": 53216
+        },
+        {
+          "path": "/opt/homebrew/opt/abseil/lib/libabsl_stacktrace.2608.0.0.dylib",
+          "bytes": 52080
+        },
+        {
+          "path": "/opt/homebrew/opt/abseil/lib/libabsl_symbolize.2608.0.0.dylib",
+          "bytes": 52768
+        },
+        {
+          "path": "/opt/homebrew/opt/abseil/lib/libabsl_debugging_internal.2608.0.0.dylib",
+          "bytes": 17024
+        },
+        {
+          "path": "/opt/homebrew/opt/abseil/lib/libabsl_demangle_internal.2608.0.0.dylib",
+          "bytes": 73408
+        },
+        {
+          "path": "/opt/homebrew/opt/abseil/lib/libabsl_demangle_rust.2608.0.0.dylib",
+          "bytes": 51456
+        },
+        {
+          "path": "/opt/homebrew/opt/abseil/lib/libabsl_decode_rust_punycode.2608.0.0.dylib",
+          "bytes": 34016
+        },
+        {
+          "path": "/opt/homebrew/opt/abseil/lib/libabsl_utf8_for_code_point.2608.0.0.dylib",
+          "bytes": 17120
+        },
+        {
+          "path": "/opt/homebrew/opt/abseil/lib/libabsl_malloc_internal.2608.0.0.dylib",
+          "bytes": 39952
+        },
+        {
+          "path": "/opt/homebrew/opt/abseil/lib/libabsl_tracing_internal.2608.0.0.dylib",
+          "bytes": 17216
+        },
+        {
+          "path": "/opt/homebrew/opt/abseil/lib/libabsl_time.2608.0.0.dylib",
+          "bytes": 94192
+        },
+        {
+          "path": "/opt/homebrew/opt/abseil/lib/libabsl_civil_time.2608.0.0.dylib",
+          "bytes": 39888
+        },
+        {
+          "path": "/opt/homebrew/opt/abseil/lib/libabsl_strings.2608.0.0.dylib",
+          "bytes": 157888
+        },
+        {
+          "path": "/opt/homebrew/opt/abseil/lib/libabsl_strings_internal.2608.0.0.dylib",
+          "bytes": 38624
+        },
+        {
+          "path": "/opt/homebrew/opt/abseil/lib/libabsl_hardening.2608.0.0.dylib",
+          "bytes": 17008
+        },
+        {
+          "path": "/opt/homebrew/opt/abseil/lib/libabsl_int128.2608.0.0.dylib",
+          "bytes": 40256
+        },
+        {
+          "path": "/opt/homebrew/opt/abseil/lib/libabsl_base.2608.0.0.dylib",
+          "bytes": 57104
+        },
+        {
+          "path": "/opt/homebrew/opt/abseil/lib/libabsl_spinlock_wait.2608.0.0.dylib",
+          "bytes": 34608
+        },
+        {
+          "path": "/opt/homebrew/opt/abseil/lib/libabsl_source_location.2608.0.0.dylib",
+          "bytes": 16880
+        },
+        {
+          "path": "/opt/homebrew/opt/abseil/lib/libabsl_throw_delegate.2608.0.0.dylib",
+          "bytes": 42464
+        },
+        {
+          "path": "/opt/homebrew/opt/abseil/lib/libabsl_raw_logging_internal.2608.0.0.dylib",
+          "bytes": 52768
+        },
+        {
+          "path": "/opt/homebrew/opt/abseil/lib/libabsl_log_severity.2608.0.0.dylib",
+          "bytes": 36656
+        },
+        {
+          "path": "/opt/homebrew/opt/abseil/lib/libabsl_time_zone.2608.0.0.dylib",
+          "bytes": 147264
+        },
+        {
+          "path": "/opt/homebrew/opt/ada-url/lib/libada.4.dylib",
+          "bytes": 393984
+        },
+        {
+          "path": "/opt/homebrew/opt/simdjson/lib/libsimdjson.33.dylib",
+          "bytes": 95168
+        },
+        {
+          "path": "/opt/homebrew/opt/brotli/lib/libbrotlidec.1.dylib",
+          "bytes": 70128
+        },
+        {
+          "path": "/opt/homebrew/opt/brotli/lib/libbrotlienc.1.dylib",
+          "bytes": 639088
+        },
+        {
+          "path": "/opt/homebrew/opt/c-ares/lib/libcares.2.dylib",
+          "bytes": 227136
+        },
+        {
+          "path": "/opt/homebrew/opt/hdrhistogram_c/lib/libhdr_histogram.6.dylib",
+          "bytes": 57920
+        },
+        {
+          "path": "/opt/homebrew/opt/highway/lib/libhwy.1.dylib",
+          "bytes": 81200
+        },
+        {
+          "path": "/opt/homebrew/opt/merve/lib/libmerve.1.dylib",
+          "bytes": 78176
+        },
+        {
+          "path": "/opt/homebrew/opt/nbytes/lib/libnbytes.dylib",
+          "bytes": 35152
+        },
+        {
+          "path": "/opt/homebrew/opt/libnghttp2/lib/libnghttp2.14.dylib",
+          "bytes": 184496
+        },
+        {
+          "path": "/opt/homebrew/opt/sqlite/lib/libsqlite3.dylib",
+          "bytes": 1277184
+        },
+        {
+          "path": "/opt/homebrew/opt/libffi/lib/libffi.8.dylib",
+          "bytes": 120576
+        },
+        {
+          "path": "/opt/homebrew/opt/uvwasi/lib/libuvwasi.dylib",
+          "bytes": 65616
+        },
+        {
+          "path": "/opt/homebrew/opt/zstd/lib/libzstd.1.dylib",
+          "bytes": 635280
+        },
+        {
+          "path": "/opt/homebrew/opt/openssl@3/lib/libcrypto.3.dylib",
+          "bytes": 4874336
+        },
+        {
+          "path": "/opt/homebrew/opt/openssl@3/lib/libssl.3.dylib",
+          "bytes": 890256
+        },
+        {
+          "path": "/opt/homebrew/opt/icu4c@78/lib/libicui18n.78.dylib",
+          "bytes": 3169664
+        },
+        {
+          "path": "/opt/homebrew/opt/icu4c@78/lib/libicuuc.78.dylib",
+          "bytes": 1859456
+        }
+      ]
+    },
+    "tsx": {
+      "version": "4.21.0"
+    },
+    "@breezystack/lamejs": {
+      "version": "1.2.7"
+    },
+    "soundtouchjs": {
+      "version": "0.3.0"
+    },
+    "node_dependencies_disk_bytes": 202485760
+  },
+  "cpu-accounting-check": {
+    "wall": 0.2847981249797158,
+    "child_tree_cpu": 0.281387,
+    "expected_grandchild_cpu_minimum": 0.25
+  },
+  "browser-check": {
+    "url": "https://research.takaya-lionfish.ts.net:8491/",
+    "desktop": "Final full viewport checked in native Chrome; correctness, profiles and tables readable.",
+    "mobile": "Final iPhone 16 emulation, 393 x 852; wrapped text, contained horizontal tables and two-column controls verified.",
+    "filter": "cpp selects 192 entry/case measurements; reset restores all 1152.",
+    "console": "0 messages and No issues after final reload and filter interactions.",
+    "unix_time": 1794736824.070081,
+    "physical_mobile_device": false,
+    "other_machine_http": "MacBook command successfully fetched complete=true status over the exact tailnet HTTPS URL."
+  },
+  "build_configuration": {
+    "implementations/c/Makefile": "CC = cc\nCFLAGS = -O3 -DNDEBUG -std=c11 -Wall -Wextra -Wpedantic -Wconversion -Wshadow\nLDLIBS = -lm\n\n.PHONY: all clean check\nall: resample\n\nresample: main.c\n\t$(CC) $(CFLAGS) main.c -o $@ $(LDLIBS)\n\ncheck: resample\n\tpython3 validate.py ./resample\n\nclean:\n\trm -f resample\n",
+    "implementations/cpp/Makefile": "CXX = c++\nCXXFLAGS = -std=c++17 -O3 -DNDEBUG -Wall -Wextra -Wpedantic\n\n.PHONY: release clean\nrelease: build/resample\n\nbuild/resample: main.cpp Makefile\n\tmkdir -p build\n\t$(CXX) $(CXXFLAGS) main.cpp -o $@\n\nclean:\n\trm -f build/resample\n",
+    "implementations/go/build.sh": "#!/bin/sh\nset -eu\n# Prefer the caller's toolchain. A locally installed, ignored toolchain is also\n# supported for the competition host; this script never downloads anything.\nif command -v go >/dev/null 2>&1; then\n    go_tool=go\nelif [ -x .tools/go/bin/go ]; then\n    go_tool=.tools/go/bin/go\nelse\n    echo 'resample-go: install Go 1.23 or newer and add go to PATH' >&2\n    exit 1\nfi\nCGO_ENABLED=0 \"$go_tool\" build -trimpath -ldflags='-s -w' -o bin/resample .\n",
+    "implementations/go/go.mod": "module resample-go\n\ngo 1.23\n",
+    "implementations/rust/Cargo.toml": "[package]\nname = \"resample-rust\"\nversion = \"0.1.0\"\nedition = \"2024\"\nrust-version = \"1.85\"\n\n[[bin]]\nname = \"resample\"\npath = \"src/main.rs\"\n\n[dependencies]\nlibc = \"=0.2.189\"\n\n[profile.release]\nlto = true\ncodegen-units = 1\nstrip = true\n",
+    "implementations/rust/Cargo.lock": "# This file is automatically @generated by Cargo.\n# It is not intended for manual editing.\nversion = 4\n\n[[package]]\nname = \"libc\"\nversion = \"0.2.189\"\nsource = \"registry+https://github.com/rust-lang/crates.io-index\"\nchecksum = \"3eaf3ede3fee6db1a4c2ee091bf8a8b4dccdc6d17f656fb07896ee72867612f2\"\n\n[[package]]\nname = \"resample-rust\"\nversion = \"0.1.0\"\ndependencies = [\n \"libc\",\n]\n"
+  },
+  "compiler_override_variables_postbuild_audit": {
+    "CC": null,
+    "CXX": null,
+    "CFLAGS": null,
+    "CXXFLAGS": null,
+    "RUSTFLAGS": null,
+    "CARGO_ENCODED_RUSTFLAGS": null,
+    "GOFLAGS": null,
+    "GOARM64": null,
+    "CGO_ENABLED": null,
+    "NODE_OPTIONS": null,
+    "UV_THREADPOOL_SIZE": null
+  },
+  "sampler": {
+    "backend": "macOS libproc",
+    "child_enumeration": "proc_listchildpids returns PID count, not bytes",
+    "resident_bytes": "PROC_PIDTASKINFO, struct size 96",
+    "cpu_ticks": "Mach absolute time; mach_timebase_info numer=125 denom=3 on this host",
+    "requested_wait_seconds": 0.002,
+    "speed_pass_sampling": false,
+    "discarded_backends": [
+      "psutil recursive discovery",
+      "intermediate libproc child-count adapter"
+    ]
+  },
+  "cpu_brand": "Apple M5 Max",
+  "fixture_generator": {
+    "ffmpeg": "ffmpeg version 9.0.2 Copyright (c) 2000-2026 the FFmpeg developers\nbuilt with clang version 21.1.8\nconfiguration: --prefix=/Users/research/.local/share/showcase-ffmpeg --cc=arm64-apple-darwin20.0.0-clang --cxx=arm64-apple-darwin20.0.0-clang++ --nm=arm64-apple-darwin20.0.0-nm --ar=arm64-apple-darwin20.0.0-ar --disable-doc --enable-openssl --enable-demuxer=dash --enable-hardcoded-tables --enable-libfreetype --enable-libharfbuzz --enable-libfontconfig --enable-libopenh264 --enable-libdav1d --enable-neon --disable-gnutls --enable-libvpx --enable-libass --enable-libplacebo --enable-pthreads --enable-libopenvino --enable-gpl --enable-libx264 --enable-libx265 --enable-libmp3lame --enable-libaom --enable-libsvtav1 --enable-libxml2 --enable-pic --enable-shared --disable-static --enable-version3 --enable-zlib --enable-libvorbis --enable-libopus --enable-librsvg --enable-libjxl --enable-libwebp --enable-ffplay --enable-vulkan --pkg-config=/Users/runner/miniforge3/conda-bld/ffmpeg_1790246734639/_build_env/bin/pkg-config\nlibavutil      61.  1.102 / 61.  1.102\nlibavcodec     63.  1.102 / 63.  1.102\nlibavformat    63.  1.102 / 63.  1.102\nlibavdevice    63.  1.102 / 63.  1.102\nlibavfilter    12.  1.102 / 12.  1.102\nlibswscale     10.  1.102 / 10.  1.102\nlibswresample   7.  1.102 /  7.  1.102\n\nExiting with exit code 0\n",
+    "ffmpeg-build": "\n  configuration:\n    --prefix=/Users/research/.local/share/showcase-ffmpeg\n    --cc=arm64-apple-darwin20.0.0-clang\n    --cxx=arm64-apple-darwin20.0.0-clang++\n    --nm=arm64-apple-darwin20.0.0-nm\n    --ar=arm64-apple-darwin20.0.0-ar\n    --disable-doc\n    --enable-openssl\n    --enable-demuxer=dash\n    --enable-hardcoded-tables\n    --enable-libfreetype\n    --enable-libharfbuzz\n    --enable-libfontconfig\n    --enable-libopenh264\n    --enable-libdav1d\n    --enable-neon\n    --disable-gnutls\n    --enable-libvpx\n    --enable-libass\n    --enable-libplacebo\n    --enable-pthreads\n    --enable-libopenvino\n    --enable-gpl\n    --enable-libx264\n    --enable-libx265\n    --enable-libmp3lame\n    --enable-libaom\n    --enable-libsvtav1\n    --enable-libxml2\n    --enable-pic\n    --enable-shared\n    --disable-static\n    --enable-version3\n    --enable-zlib\n    --enable-libvorbis\n    --enable-libopus\n    --enable-librsvg\n    --enable-libjxl\n    --enable-libwebp\n    --enable-ffplay\n    --enable-vulkan\n    --pkg-config=/Users/runner/miniforge3/conda-bld/ffmpeg_1790246734639/_build_env/bin/pkg-config\n\nExiting with exit code 0\n",
+    "ffmpeg-sha256": "c0173f667133bcdd1b862c7269131d9bc3adf6715409f52bae3cbd6e387d3141",
+    "ffprobe": "ffprobe version 9.0.2 Copyright (c) 2007-2026 the FFmpeg developers\nbuilt with clang version 21.1.8\nconfiguration: --prefix=/Users/research/.local/share/showcase-ffmpeg --cc=arm64-apple-darwin20.0.0-clang --cxx=arm64-apple-darwin20.0.0-clang++ --nm=arm64-apple-darwin20.0.0-nm --ar=arm64-apple-darwin20.0.0-ar --disable-doc --enable-openssl --enable-demuxer=dash --enable-hardcoded-tables --enable-libfreetype --enable-libharfbuzz --enable-libfontconfig --enable-libopenh264 --enable-libdav1d --enable-neon --disable-gnutls --enable-libvpx --enable-libass --enable-libplacebo --enable-pthreads --enable-libopenvino --enable-gpl --enable-libx264 --enable-libx265 --enable-libmp3lame --enable-libaom --enable-libsvtav1 --enable-libxml2 --enable-pic --enable-shared --disable-static --enable-version3 --enable-zlib --enable-libvorbis --enable-libopus --enable-librsvg --enable-libjxl --enable-libwebp --enable-ffplay --enable-vulkan --pkg-config=/Users/runner/miniforge3/conda-bld/ffmpeg_1790246734639/_build_env/bin/pkg-config\nlibavutil      61.  1.102 / 61.  1.102\nlibavcodec     63.  1.102 / 63.  1.102\nlibavformat    63.  1.102 / 63.  1.102\nlibavdevice    63.  1.102 / 63.  1.102\nlibavfilter    12.  1.102 / 12.  1.102\nlibswscale     10.  1.102 / 10.  1.102\nlibswresample   7.  1.102 /  7.  1.102\n",
+    "ffprobe-sha256": "a877bd2226f49fd255257322515d8203eb321d4649a22bc21e79335a66ce341b"
+  },
+  "reference_correction": "Completed: every latest performance qualification and all correctness checks use the exact timed Homebrew FFmpeg/ffprobe 9.0.1_1 binaries. Timed candidate runtime and all original fixture bytes remained unchanged; fixture generation is separately pinned to showcase FFmpeg 9.0.2.",
+  "harness_revision": "29ac780b879528cdbf4b0d3204b9c52e0c180dee"
+}
