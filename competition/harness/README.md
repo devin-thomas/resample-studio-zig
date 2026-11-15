@@ -136,7 +136,7 @@ observations concern only the fixtures whose references and exports qualify;
 they do not imply complete contract compliance or an overall competitive winner.
 
 The final report requires all 198 named required gates per native entry (199
-for Node), 28 boundary diagnostics and 22 independent DSP checks per entry,
+for Node), 28 boundary diagnostics and 21 independent DSP checks per entry,
 alongside the complete qualified performance matrix. It retains the latest
 result for repeated named checks. Audio-quality failures suppress speed verdicts
 and aggregate comparisons; raw elapsed times remain available. Invalid measured

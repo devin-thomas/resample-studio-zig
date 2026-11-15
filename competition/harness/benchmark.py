@@ -43,9 +43,10 @@ def run_process(id,args,sample=False):
     identity=str(q['pid']);memory=q['rss'];rss+=memory
     peaks[identity]=max(memory,peaks.get(identity,0))
     prior_process=observed.get(identity,{})
-    executable=prior_process.get('executable') if prior_process.get('name')==q['name'] and prior_process.get('executable') else mac_process.executable_path(q['pid'])
-    observed[identity]=dict(pid=q['pid'],name=q['name'],executable=executable,max_sampled_rss=peaks[identity],cpu_seconds=q['cpu_seconds'])
-    detail.append(dict(pid=q['pid'],rss=memory,name=q['name']))
+    name=q['name'] or prior_process.get('name','')
+    executable=prior_process.get('executable') if prior_process.get('name')==name and prior_process.get('executable') else mac_process.executable_path(q['pid'])
+    observed[identity]=dict(pid=q['pid'],name=name,executable=executable,max_sampled_rss=peaks[identity],cpu_seconds=q['cpu_seconds'])
+    detail.append(dict(pid=q['pid'],rss=memory,name=name))
    samples.append((stamp-start,rss,stamp-previous,detail));previous=stamp
    stop.wait(.002)
  monitor_thread=threading.Thread(target=monitor,daemon=True) if sample else None

@@ -49,7 +49,9 @@ except RuntimeError as error:
  raw_evidence['frozen_reference']=dict(status='FAIL',error=str(error))
 (w/'raw-two-frame-input-reference.json').write_text(json.dumps(raw_evidence,indent=2))
 for id in c.IDS:
- d=root/id;d.mkdir(exist_ok=True)
+ d=root/id
+ if d.exists():shutil.rmtree(d) # generated task-owned outputs, as in correctness.py
+ d.mkdir()
  for label,value in [('empty',''),('leading-space',' 100'),('trailing-space','100 '),('hex-float','0x1p7'),('underscore','1_00'),('overflow','1e999'),('nan-uppercase','NaN'),('infinity-word','Infinity')]:
   def invalid_decimal(label=label,value=value):
    out=d/('invalid-decimal-'+label+'.wav');r=c.run(id,[f/'second.wav','-o',out,'--speed',value])
@@ -135,7 +137,7 @@ for id in c.IDS:
     except FileNotFoundError:pass
     time.sleep(.001)
    stdout,stderr=proc.communicate(timeout=1);require(proc.returncode==0,stderr.decode(errors='replace'))
-   size=dest.stat().st_size;require(size>44,'empty output');require(not any(n!=size for n in observations),f'partial final destination visible: observed min={min(observations)} final={size}')
+   size=dest.stat().st_size;require(size>44,'empty output');require(not any(n!=size for n in observations),f'partial final destination visible: observed min={min(observations,default=None)} final={size}')
    return dict(final_bytes=size,visible_observations=len(observations),observed_sizes=sorted(set(observations)))
   finally:
    if proc.poll() is None:
