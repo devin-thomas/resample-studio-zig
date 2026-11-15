@@ -440,7 +440,7 @@ void render(const Options &options) {
     graph << "concat=n=" << inputs.size() << ":v=0:a=1[out]";
     command.emplace_back("-filter_complex");
     command.push_back(graph.str()); // move the potentially large graph; do not copy an initializer-list string
-    command.insert(command.end(), {"-map", "[out]", "-map_metadata", "-1"});
+    command.insert(command.end(), {"-map", "[out]", "-map_metadata", "-1", "-map_chapters", "-1"});
     if (extension(options.output) == ".wav") command.insert(command.end(), {"-c:a", "pcm_s24le", "-f", "wav"});
     else command.insert(command.end(), {"-c:a", "libmp3lame", "-b:a", "320k", "-f", "mp3"});
     command.push_back("audio");

@@ -25,3 +25,17 @@ separately; it is not part of an identical-workload speed claim.
 This clarification does not change the canonical CLI, eligible linked
 processing, output profiles, primary graph or ordinary quality gates. It
 records an observed baseline boundary before comparative testing exists.
+
+## Source chapters
+
+The metadata rule includes chapter structures and chapter tags. New entries
+explicitly disable chapter copying with `-map_chapters -1` on the primary
+output, in addition to `-map_metadata -1`. Fresh review reproduced chapter
+structures surviving the latter flag alone on chapter-bearing MP3 inputs.
+This output option does not change the primary DSP graph or encoding profile.
+
+The pinned Zig source supplies only `-map_metadata -1`. Chapter-bearing
+baseline compatibility therefore must be checked and reported by the future
+harness; do not assume that stripping global tags removes chapters. The
+coordinator did not execute or change that baseline. Keep any discovered
+baseline failure visible and do not inherit it in the new entries.

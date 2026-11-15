@@ -537,7 +537,14 @@ fn render(options: Options) -> Result<()> {
     command
         .arg("-filter_complex")
         .arg(graph(options.inputs.len(), options.ratio))
-        .args(["-map", "[out]", "-map_metadata", "-1"]);
+        .args([
+            "-map",
+            "[out]",
+            "-map_metadata",
+            "-1",
+            "-map_chapters",
+            "-1",
+        ]);
     if is_wav(&output) {
         command.args(["-c:a", "pcm_s24le", "-f", "wav"]);
     } else {

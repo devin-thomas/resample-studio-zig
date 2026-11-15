@@ -51,7 +51,8 @@ aformat=sample_fmts=fltp:channel_layouts=stereo,asetpts=N/SR/TB[ai]
 ```
 
 All labels then feed `concat=n=N:v=0:a=1[out]`. Only the first audio stream of
-each input is used. Metadata is disabled with `-map_metadata -1`. WAV uses
+each input is used. Source tags and chapter structures are disabled explicitly
+with `-map_metadata -1 -map_chapters -1`. WAV uses
 `pcm_s24le`; MP3 uses `libmp3lame -b:a 320k`. The encoders receive stereo 48 kHz
 audio. No gain normalization, fades, intentional gaps, trimming or independent
 pitch/time operations are added.
@@ -171,7 +172,8 @@ this focused validation. Generated binaries, logs and test fixtures are ignored.
 
 ## Fresh review
 
-The independent review passed all 19 focused tests and all 11 existing
+The independent review, including the chapter-metadata follow-up, passed all
+20 focused tests and all 11 existing
 integration tests after the changes above. See [REVIEW.md](REVIEW.md) for findings,
 evidence, publication limits and the exact checked boundary fixtures. No other
 entry was run or compared. Runtime DSP and encoding remain delegated to FFmpeg.
@@ -184,3 +186,8 @@ preserve an existing destination; they are reference limitations described in
 emptiness is still checked on decoded source frames, separately from this
 transformed-output boundary. No resampler padding, filter changes or quality
 reductions were introduced to work around it.
+
+The final metadata regression adds a real chapter and source title to an MP3,
+confirms both exist in the fixture, then verifies MP3 and WAV exports contain
+no chapters or source titles. `-map_metadata -1` alone leaves an MP3 chapter
+structure behind; the primary output now also uses `-map_chapters -1`.

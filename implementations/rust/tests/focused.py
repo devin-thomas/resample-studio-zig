@@ -72,6 +72,7 @@ class Focused(unittest.TestCase):
             for i in range(len(inputs))
         ) + "".join(f"[a{i}]" for i in range(len(inputs))) + f"concat=n={len(inputs)}:v=0:a=1[out]"
         subprocess.run(command + ["-filter_complex", graph, "-map", "[out]", "-map_metadata", "-1",
+                                  "-map_chapters", "-1",
                                   "-c:a", "pcm_s24le", str(output)], check=True)
 
     def test_profile_reference_all_contract_rates(self):
@@ -207,6 +208,35 @@ class Focused(unittest.TestCase):
         self.cli("-o", "-音.MP3", "--", source.name)
         info = json.loads(subprocess.check_output(["ffprobe", "-v", "error", "-show_streams", "-of", "json", str(self.root / "-音.MP3")]))["streams"][0]
         self.assertEqual((info["sample_rate"], info["channels"], info["bit_rate"]), ("48000", 2, "320000"))
+
+    def test_source_chapters_and_titles_not_copied(self):
+        metadata = self.root / "source.ffmetadata"
+        metadata.write_text(";FFMETADATA1\ntitle=Rust source title sentinel\n"
+                            "[CHAPTER]\nTIMEBASE=1/1000\nSTART=0\nEND=500\n"
+                            "title=Rust source chapter sentinel\n")
+        source = self.root / "chaptered.mp3"
+        subprocess.run([FFMPEG, "-v", "error", "-i", str(self.input), "-f", "ffmetadata",
+                        "-i", str(metadata), "-map", "0:a:0", "-map_metadata", "1",
+                        "-map_chapters", "1", "-c:a", "libmp3lame", "-b:a", "320k",
+                        str(source)], check=True)
+
+        def probe(path):
+            return json.loads(subprocess.check_output([
+                "ffprobe", "-v", "error", "-show_chapters", "-show_format", "-show_streams",
+                "-of", "json", str(path)]))
+
+        original = probe(source)
+        self.assertEqual(len(original["chapters"]), 1)
+        self.assertEqual(original["format"]["tags"]["title"], "Rust source title sentinel")
+        self.assertEqual(original["chapters"][0]["tags"]["title"], "Rust source chapter sentinel")
+        for extension in ("mp3", "wav"):
+            with self.subTest(extension=extension):
+                output = self.root / f"stripped.{extension}"
+                self.cli(source, "-o", output)
+                info = probe(output)
+                self.assertEqual(info.get("chapters", []), [])
+                self.assertNotIn("Rust source title sentinel", json.dumps(info))
+                self.assertNotIn("Rust source chapter sentinel", json.dumps(info))
 
     def test_invalid_cli(self):
         for tail in (["--speed", "nan"], ["--speed", "100x"], ["--speed", "1e309"],

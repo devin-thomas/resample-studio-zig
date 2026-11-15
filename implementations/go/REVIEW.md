@@ -86,6 +86,13 @@ render. No speed superiority is claimed or measured.
   argv. Its dependency description now includes the decoded guard's standard
   PCM encoder and file protocol. No runtime Go installation, Python, ffprobe,
   shell or third-party Go module is needed by the built CLI.
+- A late shared chapter-copying finding was checked independently. The final
+  output argv already had explicit `-map_chapters -1` in addition to both
+  metadata exclusions (`main.go:289`), so no production flag change was needed.
+  The new regression constructs an MP3, verifies its source title and chapter
+  title/count, then exports to WAV and MP3 and verifies no chapters or source
+  title/artist tags survive. This exercises chapter structures separately from
+  metadata tags. The manifest and primary graph remain unchanged.
 
 ## Verification
 
@@ -103,8 +110,8 @@ CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -trimpath -ldflags='-s -w' -o .va
 
 - Both Go tests, the race-detector run and vet passed. The allocation assertion
   is part of the diagnostic-ring test, not a throughput benchmark.
-- All 27 Python integration tests passed: the 11 unchanged shared
-  individual-entry tests plus 16 Go-specific tests. Release checks ran with
+- All 28 Python integration tests passed: the 11 unchanged shared
+  individual-entry tests plus 17 Go-specific tests. Release checks ran with
   `nice` in the owned `go-review-check` screen session.
 - Distinct stereo tones at 125.5% produced exactly the same decoded stereo
   float bytes as the matched-profile FFmpeg reference. Mixed 44.1/32 kHz

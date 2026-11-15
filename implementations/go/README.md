@@ -57,8 +57,9 @@ aformat=sample_fmts=fltp:channel_layouts=stereo,asetpts=N/SR/TB
 
 The `asetrate` value has eight fractional decimal places. The streams feed
 `concat=n=N:v=0:a=1`. WAV uses `pcm_s24le`; MP3 uses `libmp3lame` at 320 kbps.
-The first audio stream is selected. Metadata copying is disabled. There is no
-gain normalization or independent pitch/speed processing.
+The first audio stream is selected. Metadata copying is disabled, and explicit
+`-map_chapters -1` suppresses chapter structures independently of their tags.
+There is no gain normalization or independent pitch/speed processing.
 
 One FFmpeg process handles all inputs. An additional PCM null output per input,
 limited to one frame, makes FFmpeg's `empty_output_stream` failure gate reject
@@ -138,7 +139,7 @@ fixtures and the locally installed toolchain stay in ignored `.validation/`
 and `.tools/` directories. The release binary is ignored under `bin/`.
 
 The reviewed release passed Go tests (also with the race detector), `go vet`,
-and all 27 Python integration tests. The Python suite inherits all 11 unchanged
+and all 28 Python integration tests. The Python suite inherits all 11 unchanged
 individual-entry tests from `../../tests/integration.py`, then adds:
 
 - Symlink, hard-link and symlink-parent aliases, with input bytes preserved.
@@ -157,6 +158,8 @@ individual-entry tests from `../../tests/integration.py`, then adds:
   unity rate, finalized RIFF/data sizes and the MP3 320 kbps profile.
 - Mixed-rate reference equality at -300 cents, first audio stream selection,
   removed source metadata, and unwritable output parents.
+- MP3 input containing a verified source title and chapter exports to both WAV
+  and MP3 without chapters or source title/artist tags.
 
 Inherited coverage includes WAV/MP3 input and output, mixed sample rates and
 ordered concatenation, 25%/400% boundaries, existing outputs, corrupt input,

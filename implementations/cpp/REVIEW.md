@@ -127,3 +127,33 @@ now describe descriptor inheritance, bounded diagnostics and cancellation.
   hard-link support for no-overwrite publication are real runtime dependencies.
   Windows and filename-dependent/relative-reference optional containers are not
   promised; mandatory standalone WAV/MP3 inputs were exercised.
+
+## Final chapter-metadata fix
+
+The coordinator supplied a late source-metadata finding. The new
+`test_source_chapters_are_not_copied` independently reproduced it against the
+previous release: a source MP3 chapter survived `-map_metadata -1`, with its title
+replaced by FFmpeg's `ch0`. Evidence: `review-chapters-before.log` (expected
+regression failure). The fixture verifies that its source MP3 has one real
+chapter, a chapter title and a format title before attempting either export.
+
+The primary output argv now explicitly includes `-map_chapters -1` beside
+`-map_metadata -1`. The regression renders both MP3 and WAV at 125.5% and checks
+that chapters and source titles are absent from the complete ffprobe response.
+The frozen DSP graph, codecs, profile, publication behavior and `entry.json`
+remain unchanged. No sibling, contract or shared file was edited.
+
+Final checks after the fix, run with `nice -n 10` in the owned
+`cpp-review-chapters-final` screen session:
+
+- Release build: passed without warnings (`review-chapters-build.log`).
+- New chapter regression: passed for both output formats
+  (`review-chapters-targeted.log`).
+- Focused suite: all 20 tests passed (`review-chapters-validation.log`), including
+  the fourteen-rate reference checks and ordinary short-reference checks.
+- Existing integration suite: all 11 tests passed
+  (`review-chapters-integration.log`). `review-chapters-final.exit` is 0.
+- `git diff --check -- implementations/cpp`: passed.
+
+No comparative testing, commits or manifest changes were made. The remaining
+limits listed above are unchanged.

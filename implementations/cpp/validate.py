@@ -182,6 +182,33 @@ class ContractTests(unittest.TestCase):
                          ("mp3", "48000", 2, "320000"))
         self.assertNotIn("title", probe["format"].get("tags", {}))
 
+    def test_source_chapters_are_not_copied(self):
+        metadata = self.root / "chapters.ffmeta"
+        metadata.write_text(";FFMETADATA1\ntitle=source-secret\n"
+                            "[CHAPTER]\nTIMEBASE=1/1000\nSTART=0\nEND=500\n"
+                            "title=source-chapter-secret\n")
+        source = self.root / "chaptered.mp3"
+        subprocess.run([FFMPEG, "-v", "error", "-i", str(self.first),
+                        "-f", "ffmetadata", "-i", str(metadata), "-map", "0:a:0",
+                        "-map_metadata", "1", "-map_chapters", "1",
+                        "-c:a", "libmp3lame", str(source)], check=True)
+        def probe(path):
+            return json.loads(subprocess.check_output([
+                FFPROBE, "-v", "error", "-show_chapters", "-show_format",
+                "-show_streams", "-of", "json", str(path)]))
+        original = probe(source)
+        self.assertEqual(len(original["chapters"]), 1, "fixture must retain a real MP3 chapter")
+        self.assertEqual(original["chapters"][0]["tags"]["title"], "source-chapter-secret")
+        self.assertEqual(original["format"]["tags"]["title"], "source-secret")
+        for extension in ("mp3", "wav"):
+            with self.subTest(output=extension):
+                output = self.root / f"chapter-free.{extension}"
+                self.cli(source, "--speed", 125.5, "-o", output)
+                result = probe(output)
+                self.assertEqual(result.get("chapters", []), [])
+                self.assertNotIn("source-secret", json.dumps(result))
+                self.assertNotIn("source-chapter-secret", json.dumps(result))
+
     def test_relative_path_dependency_lookup(self):
         bindir = self.root / "relative-bin"
         bindir.mkdir()

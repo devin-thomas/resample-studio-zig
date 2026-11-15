@@ -52,7 +52,8 @@ aformat=sample_fmts=fltp:channel_layouts=stereo,asetpts=N/SR/TB
 ```
 
 The tracks feed `concat=n=N:v=0:a=1`. Output metadata is disabled with
-`-map_metadata -1`. No quality, rate, bit depth or bitrate reduction is used.
+`-map_metadata -1 -map_chapters -1`, disabling both source tags and chapter
+structures. No quality, rate, bit depth or bitrate reduction is used.
 Input protocol whitelisting excludes network access, including references in
 playlist-like inputs. Rust does not buffer decoded audio or the output.
 
@@ -138,7 +139,7 @@ python3 tests/focused.py ./target/release/resample
 ```
 
 Reviewer results: 2 Rust unit tests, all 11 existing individual-entry integration
-tests, and all 22 focused tests pass. Clippy reports no warnings. The real
+tests, and all 23 focused tests pass. Clippy reports no warnings. The real
 release entrypoint handles version/help and renders all tests directly.
 
 The focused tests compare decoded WAV samples exactly against the specified
@@ -153,7 +154,8 @@ late aliases, input descriptor pinning across replacement by a FIFO, one-frame
 validation encoding, finalized WAV RIFF/data sizes, bounded diagnostic flooding,
 changed temporary cleanup, inherited SIGCHLD ignoring, and cancellation with
 closed or continuously noisy stderr, closed standard input/output handles,
-5/20 ms short clips, and clean failure on reference-empty boundaries. The existing
+5/20 ms short clips, clean failure on reference-empty boundaries, and MP3
+chapter/title removal in WAV and MP3 exports. The existing
 tests cover tone changes, MP3 inputs/outputs, FIFO rejection and overwrite preservation.
 
 These are correctness checks for this entry, not comparative performance tests

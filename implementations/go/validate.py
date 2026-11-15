@@ -248,6 +248,43 @@ class GoTests(baseline.AudioTests):
         data = baseline.samples(output)
         self.assertAlmostEqual(baseline.frequency(data, .1, 1), 440 * rate / 48000, delta=2)
 
+    def test_mp3_chapters_and_source_titles_are_removed(self):
+        metadata = self.root / "chapters.ffmetadata"
+        metadata.write_text(
+            ";FFMETADATA1\n"
+            "title=source title marker\n"
+            "artist=source artist marker\n"
+            "[CHAPTER]\nTIMEBASE=1/1000\nSTART=0\nEND=500\n"
+            "title=source chapter marker\n"
+        )
+        source = self.root / "chaptered.mp3"
+        subprocess.run([
+            "ffmpeg", "-v", "error", "-i", str(self.first),
+            "-f", "ffmetadata", "-i", str(metadata), "-map", "0:a:0",
+            "-map_metadata", "1", "-map_chapters", "1",
+            "-c:a", "libmp3lame", "-b:a", "320k", str(source),
+        ], check=True)
+
+        def probe(path):
+            return json.loads(subprocess.check_output([
+                "ffprobe", "-v", "error", "-show_chapters", "-show_format",
+                "-show_streams", "-of", "json", str(path),
+            ]))
+
+        original = probe(source)
+        self.assertEqual(original["format"]["tags"]["title"], "source title marker")
+        self.assertEqual(len(original["chapters"]), 1)
+        self.assertEqual(original["chapters"][0]["tags"]["title"], "source chapter marker")
+        for extension in ("wav", "mp3"):
+            output = self.root / f"without-chapters.{extension}"
+            self.cli(source, "-o", output)
+            exported = probe(output)
+            self.assertEqual(exported.get("chapters", []), [])
+            for section in (exported["format"], *exported["streams"]):
+                self.assertNotIn("title", section.get("tags", {}))
+                self.assertNotIn("artist", section.get("tags", {}))
+            self.assertNotIn("source chapter marker", json.dumps(exported))
+
     @unittest.skipIf(hasattr(os, "geteuid") and os.geteuid() == 0, "root can bypass directory write permissions")
     def test_unwritable_output_parent(self):
         parent = self.root / "read-only"
