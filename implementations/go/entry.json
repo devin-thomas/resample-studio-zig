@@ -1,0 +1,28 @@
+{
+  "id": "go",
+  "language": "Go",
+  "contract": "resample-linked-v1",
+  "cwd": "implementations/go",
+  "build": [
+    "./build.sh"
+  ],
+  "run": [
+    "./bin/resample"
+  ],
+  "outputProfile": "zig-48k",
+  "dependencies": [
+    "Go >= 1.23 (build only)",
+    "FFmpeg with libmp3lame, pcm_s16le and the file protocol on PATH (runtime)",
+    "POSIX host with /dev/fd, sibling hard links and atomic rename"
+  ],
+  "improvements": [
+    "Atomic exclusive hard-link publication avoids a whole-output copy and exposes only complete output",
+    "Atomic rename for overwrite preserves pre-existing output on failed renders",
+    "Pinned read-only input descriptors close input pathname replacement races; inode checks reject destination aliases",
+    "SIGINT/SIGTERM cancel and reap the direct FFmpeg child; bounded diagnostic-pipe drain wait",
+    "Single streaming FFmpeg child; decoded-frame guards reject empty tracks without probe subprocesses",
+    "Fixed 16 KiB diagnostic ring with allocation-free writes; no PCM buffering in Go",
+    "Already-open temporary output descriptor avoids reopening its pathname for encoding",
+    "Standalone Go executable; no runtime Go installation or third-party Go modules"
+  ]
+}
