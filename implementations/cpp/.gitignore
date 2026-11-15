@@ -1,0 +1,6 @@
+/build/
+/*.log
+/*.exit
+/cpp-check-*/
+/smoke-*/
+/__pycache__/

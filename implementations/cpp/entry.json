@@ -1,0 +1,33 @@
+{
+  "id": "cpp",
+  "language": "C++17",
+  "contract": "resample-linked-v1",
+  "cwd": "implementations/cpp",
+  "build": [
+    "make",
+    "release"
+  ],
+  "run": [
+    "./build/resample"
+  ],
+  "outputProfile": "zig-48k",
+  "dependencies": [
+    "C++17 compiler and make (build only)",
+    "POSIX macOS or Linux with glibc 2.29+ and /dev/fd",
+    "FFmpeg on PATH with libmp3lame",
+    "output filesystem supporting hard links for no-overwrite publication"
+  ],
+  "improvements": [
+    "Atomic no-clobber hard-link publication eliminates the final full-output copy and partial destination visibility",
+    "Atomic overwrite rename preserves the old output until successful encoding",
+    "Private sibling staging directory and directory-relative publication/cleanup",
+    "Input hardlink and symlink alias checks before render and publication",
+    "SIGINT/SIGTERM/SIGHUP forwarding, child reaping and temporary cleanup",
+    "Local regular-file validation and FFmpeg network protocol restriction",
+    "No whole-audio buffering or FFmpeg library build dependency",
+    "Pinned regular-file descriptors prevent input pathname replacement from changing decoded sources",
+    "Cancellation escalates to SIGKILL after one second while preserving waitable-child PID ownership",
+    "Bounded 16 KiB FFmpeg diagnostic tail, drained without whole-output buffering",
+    "Resolve relative PATH entries before staging chdir; reserve argument storage and avoid a full graph copy"
+  ]
+}
